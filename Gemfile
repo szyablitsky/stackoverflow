@@ -16,7 +16,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
 group :development do
-  gem 'spring'
   gem 'brakeman'
   gem 'quiet_assets'
   gem 'better_errors'
@@ -24,7 +23,15 @@ group :development do
 end
 
 group :development, :test do
+  gem 'spring-commands-rspec'
   gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'launchy'
+  gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'shoulda-matchers'
+  gem 'capybara'
 end
 
 # Use ActiveModel has_secure_password

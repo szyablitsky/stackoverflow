@@ -4,6 +4,6 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.includes(:question,:answers).find(params[:id])
+    @topic = Topic.includes(:question, :answers).find(params[:id])
   end
 end

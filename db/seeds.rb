@@ -6,10 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-topic = Topic.create(title:'1st question')
+topic = Topic.create!(title:'1st question')
 
-Message.create(body:'Question body',answer:false,topic:topic)
+Message.create!(body:'Question body',answer:false,topic:topic)
 
 (1..5).each do |n|
-  Message.create(body:"Answer #{n}",answer:true,topic:topic)
+  Message.create!(body:"Answer #{n}",answer:true,topic:topic)
 end

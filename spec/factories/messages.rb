@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :message do
-    body "Question body"
+    body 'Question body'
     topic
     answer true
 

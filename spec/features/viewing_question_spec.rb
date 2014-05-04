@@ -12,4 +12,3 @@ feature 'Viewing question' do
     end
   end
 end
-

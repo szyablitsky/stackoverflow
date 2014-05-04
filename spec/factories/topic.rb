@@ -6,7 +6,7 @@ FactoryGirl.define do
       ignore { answers_count 5 }
       after :create do |topic, evaluator|
         create(:question, topic: topic)
-        create_list(:answer, evaluator.answers_count, topic:topic )
+        create_list(:answer, evaluator.answers_count, topic: topic)
       end
     end
   end

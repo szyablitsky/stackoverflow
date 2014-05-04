@@ -13,4 +13,17 @@ describe TopicsController do
       expect(response).to render_template :index
     end
   end
+
+  describe 'GET #show' do
+    let(:topic) { create(:topic_with_messages) }
+    before(:each) { get :show, id: topic }
+
+    it 'populates a topic' do
+      expect(assigns(:topic)).to eq topic
+    end
+
+    it 'renders show view' do
+      expect(response).to render_template :show
+    end
+  end
 end

@@ -34,7 +34,7 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    brakeman (2.4.3)
+    brakeman (2.5.0)
       erubis (~> 2.6)
       fastercsv (~> 1.5)
       haml (>= 3.0, < 5.0)
@@ -60,6 +60,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    database_cleaner (1.2.0)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     erubis (2.7.0)
@@ -80,7 +81,7 @@ GEM
     highline (1.6.21)
     hike (1.2.3)
     i18n (0.6.9)
-    jbuilder (2.0.6)
+    jbuilder (2.0.7)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (3.1.0)
@@ -153,7 +154,7 @@ GEM
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
     sexp_processor (4.4.3)
-    shoulda-matchers (2.6.0)
+    shoulda-matchers (2.6.1)
       activesupport (>= 3.0.0)
     slim (2.0.2)
       temple (~> 0.6.6)
@@ -197,6 +198,7 @@ DEPENDENCIES
   brakeman
   capybara
   coffee-rails (~> 4.0.0)
+  database_cleaner
   factory_girl_rails
   haml-rails
   jbuilder (~> 2.0)

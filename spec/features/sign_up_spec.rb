@@ -25,6 +25,6 @@ feature 'Sign up' do
     fill_in 'Password confirmation', with: 'Password2'
     click_button 'Sign up'
 
-    expect(page).to have_content /error.+match/
+    expect(page).to have_content(/error.+match/)
   end
 end

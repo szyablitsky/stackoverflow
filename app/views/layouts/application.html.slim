@@ -1,0 +1,42 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    title StackOverflow (clone)
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+ 
+  body
+    
+    nav.navbar.navbar-default role="navigation"
+      .container
+        .navbar-header
+          button.navbar-toggle type="button" data-toggle="collapse" data-target="#navbar-collapse-1"
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand href="#" StackOverflow
+      div.collapse.navbar-collapse#navbar-collapse-1
+        - if user_signed_in?
+          p.navbar-text.navbar-right
+            | Signed in as
+            a.navbar-link href="#" = current_user.email
+
+    main
+      .container
+
+        - flash.each do |type, msg|
+          div class="alert #{bootstrap_flash(type)} fade in"
+            button.close type="button" data-dismiss="alert" aria-hidden="true" &times;
+            = msg
+
+        == yield
+
+    footer
+      .container
+        | Catch the flow!
+

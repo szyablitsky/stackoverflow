@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: so_dev
+  username: postgres
+
+test:
+  <<: *default
+  database: so_test
+  username: postgres
+
+production:
+  <<: *default
+  database: so_prod
+  username: stackoverflow
+  password: <%= ENV['SO_DB_PASSWORD'] %>

@@ -10,6 +10,6 @@ This is a demo of my capabilities as a Ruby on Rails developer.
 
 It is mainly Rails project with light usage of JavaSrcipt and jQuery. Styles by Twitter Bootstrap.
 
-All user stories are developed with BDD and can be seen in Issues.
+All user stories are delivered using BDD and can be seen in Issues.
 
 by [Sergey Zyablitsky](http://finch.pro)

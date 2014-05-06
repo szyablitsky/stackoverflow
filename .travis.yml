@@ -1,0 +1,8 @@
+language: ruby
+rvm:
+  - 2.1.1
+script: 
+  - bundle exec rake db:schema:load RAILS_ENV=test
+  - bundle exec rspec
+before_script:
+  - psql -c 'create database so_test;' -U postgres

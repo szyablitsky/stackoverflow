@@ -36,4 +36,5 @@ group :test do
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'capybara'
+  gem 'coveralls', require: false
 end

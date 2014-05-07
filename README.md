@@ -7,7 +7,7 @@
 [![Dependency Status](https://gemnasium.com/szyablitsky/stackoverflow.svg)](https://gemnasium.com/szyablitsky/stackoverflow)
 [![Stories in Ready](https://badge.waffle.io/szyablitsky/stackoverflow.png?label=ready&title=Ready)](https://waffle.io/szyablitsky/stackoverflow)
 
-This is a demo of my capabilities as a Ruby on Rails developer. 
+This is a demo of my skills as a Ruby on Rails developer. 
 
 It is mainly Rails project with light usage of JavaSrcipt and jQuery. Styles by Twitter Bootstrap.
 

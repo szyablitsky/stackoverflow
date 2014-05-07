@@ -19,12 +19,21 @@ html lang="en"
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand href="#" StackOverflow
-      div.collapse.navbar-collapse#navbar-collapse-1
-        - if user_signed_in?
+          a.navbar-brand href="#"
+            ' StackOverflow
+            small clone
+        .collapse.navbar-collapse#navbar-collapse-1
           p.navbar-text.navbar-right
-            | Signed in as
-            a.navbar-link href="#" = current_user.email
+            - if user_signed_in?
+              ' Signed in as
+              => link_to current_user.email, edit_user_registration_path, class: 'navbar-link'
+              | (
+              = link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'navbar-link'
+              | )
+            - else
+              => link_to 'Sign in', new_user_session_path, class: 'navbar-link'
+              ' |
+              = link_to 'Sign up', new_user_registration_path, class: 'navbar-link'
 
     main
       .container

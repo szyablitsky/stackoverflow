@@ -8,8 +8,10 @@
 
 topic = Topic.create!(title:'1st question')
 
-Message.create!(body:'Question body',answer:false,topic:topic)
+Message.create!(body: 'Question body', answer: false, topic: topic)
 
 (1..5).each do |n|
   Message.create!(body:"Answer #{n}",answer:true,topic:topic)
 end
+
+User.create!(email: 't@test.com', password: '12345678', password: '12345678')

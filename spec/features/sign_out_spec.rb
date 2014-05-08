@@ -2,15 +2,16 @@ require 'spec_helper'
 
 feature 'Sign out' do
   context 'when signed in' do
-    background { user_signed_in }
+    given(:user) { create(:user) }
 
     scenario 'user can sign out' do
+      sign_in user
+
       visit '/'
       click_link 'Sign out'
 
+      expect(page).not_to have_text 'Signed in as'
       expect(page).not_to have_link 'Sign out'
-      expect(page).to have_link 'Sign in'
-      expect(page).to have_link 'Sign up'
     end
   end
 

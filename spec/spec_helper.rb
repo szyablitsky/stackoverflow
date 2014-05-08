@@ -23,11 +23,10 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
+  config.include Devise::TestHelpers, type: :controller
 
-  config.include Warden::Test::Helpers
-  Warden.test_mode!
-
-  config.include Features, type: :feature
+  config.include ControllerMacros, type: :controller
+  config.include FeatureMacros, type: :feature
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction

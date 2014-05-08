@@ -18,7 +18,7 @@ feature 'Sign up' do
     expect(page).to have_content 'error'
   end
 
-  scenario 'User can not sign up when password and  confirmation does not match' do
+  scenario 'User can not sign up when password and confirmation does not match' do
     visit new_user_registration_path
     fill_in 'Email', with: 'test@example.com'
     fill_in 'Password', with: 'Password1'

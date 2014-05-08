@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'Viewing question' do
-  given!(:topic) { create(:topic_with_messages) }
+  given!(:topic) { create(:topic_with_answers) }
 
   scenario 'User can view questions with answers to it' do
     visit "/questions/#{topic.id}"

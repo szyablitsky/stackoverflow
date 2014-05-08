@@ -17,12 +17,17 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 gem 'devise'
+gem 'reform'
+
+gem 'bootstrap_form'
+gem 'nav_lynx'
 
 group :development do
   gem 'brakeman'
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rb-readline'
 end
 
 group :development, :test do

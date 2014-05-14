@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new, :create]
 
   def index
     @topics = Topic.all
@@ -10,11 +10,11 @@ class TopicsController < ApplicationController
   end
 
   def new
-    @form = question_form
+    @form = new_form
   end
 
   def create
-    @form = question_form
+    @form = new_form
     if @form.validate(params[:question])
       save_topic do |topic|
         redirect_to question_path(topic)
@@ -26,20 +26,17 @@ class TopicsController < ApplicationController
 
   private
 
-  def question_form
+  def new_form
     QuestionForm.new(Topic.new(question: Message.new))
   end
 
   def save_topic
     topic = Topic.new
-    # topic = nil
     @form.save do |data, nested|
       topic.title = data.title
       topic.build_question(nested[:question])
-      # topic = Topic.new(nested)
       topic.save!
       yield topic if block_given?
     end
-    # topic
   end
 end

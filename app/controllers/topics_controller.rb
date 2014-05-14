@@ -7,6 +7,7 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.includes(:question, :answers).find(params[:id])
+    @answer = @topic.answers.build
   end
 
   def new

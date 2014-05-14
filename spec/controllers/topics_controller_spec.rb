@@ -22,6 +22,18 @@ describe TopicsController do
       expect(assigns(:topic)).to eq topic
     end
 
+    it 'populates an answer with new message' do
+      expect(assigns(:answer)).to be_a_new(Message)
+    end
+
+    it 'populated message is an answer' do
+      expect(assigns(:answer).answer).to eq true
+    end
+
+    it 'populated answer belongs to topic' do
+      expect(assigns(:answer).topic).to eq topic
+    end
+
     it 'renders show view' do
       expect(response).to render_template :show
     end

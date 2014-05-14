@@ -1,3 +1,19 @@
 h1 = @topic.title
+hr
 p = @topic.question.body
-ul = render @topic.answers
+
+section#answers
+  = render 'answers', answers: @topic.answers
+
+hr
+- if user_signed_in?
+  = bootstrap_form_for @answer, url: question_answers_path(@topic), remote: true do |f|
+    = f.text_area :body, label: 'Your answer'
+    = f.submit 'Post your answer'
+- else
+  p
+    ' You should
+    => link_to 'sign in', new_user_session_path
+    ' or
+    => link_to 'sign up', new_user_registration_path
+    | to answer this question

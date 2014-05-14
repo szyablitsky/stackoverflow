@@ -6,7 +6,7 @@ User.delete_all
 
 # seeds
 
-User.create!(email: 'user@example.com', password: '12345678', password: '12345678')
+User.create!(email: 'user@example.com', password: '12345678')
 
 topic = Topic.create!(title: '1st question')
 Message.create!(body: 'Question body', answer: false, topic: topic)

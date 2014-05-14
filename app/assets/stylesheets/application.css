@@ -13,5 +13,6 @@
  *= require bootstrap_custom
  *= require rails_bootstrap_forms
  *= require layout
+ *= require topic
  *= require_self
  */

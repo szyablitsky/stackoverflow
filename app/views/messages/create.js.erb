@@ -1,0 +1,7 @@
+<% if @answer.errors.present? %>
+  var message = $('<span></span>').addClass('help-block').text("can't be blank");
+  $('#message_body').parent().addClass('has-error').append(message);
+<% else %>
+  $('#answers').html('<%= j render "topics/answers", answers: @topic.answers %>');
+  $('#message_body').val('').parent().removeClass('has-error').find('.help-block').remove();
+<% end %>

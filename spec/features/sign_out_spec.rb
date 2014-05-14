@@ -1,4 +1,4 @@
-require 'spec_helper'
+require_relative 'features_helper'
 
 feature 'Sign out' do
   context 'when signed in' do

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require_relative 'features_helper'
 
 feature 'Asking question' do
   context 'when signed in' do

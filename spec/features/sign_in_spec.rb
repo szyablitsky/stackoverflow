@@ -1,4 +1,4 @@
-require 'spec_helper'
+require_relative 'features_helper'
 
 feature 'Sign in' do
   given(:user) { create(:user) }

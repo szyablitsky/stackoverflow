@@ -26,35 +26,8 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
 
   config.include ControllerMacros, type: :controller
-  config.include FeatureMacros, type: :feature
 
-  config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
-    begin
-      DatabaseCleaner.start
-      FactoryGirl.lint
-    ensure
-      DatabaseCleaner.clean
-    end
-  end
-
-  config.before(:each) do
-    DatabaseCleaner.strategy = :transaction
-  end
-
-  config.before(:each, js: true) do
-    DatabaseCleaner.strategy = :truncation
-  end
-
-  config.before(:each) do
-    DatabaseCleaner.start
-  end
-
-  config.after(:each) do
-    DatabaseCleaner.clean
-  end
-
-  config.use_transactional_fixtures = false
+  config.use_transactional_fixtures = true
 
   config.order = 'random'
 end

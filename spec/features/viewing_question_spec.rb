@@ -1,4 +1,4 @@
-require 'spec_helper'
+require_relative 'features_helper'
 
 feature 'Viewing question' do
   given!(:topic) { create(:topic_with_answers) }

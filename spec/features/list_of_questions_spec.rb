@@ -1,4 +1,4 @@
-require 'spec_helper'
+require_relative 'features_helper'
 
 feature 'List of questions' do
   given!(:topics) { create_list(:topic, 2) }

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require_relative 'features_helper'
 
 feature 'Sign up' do
   scenario 'User can sign up with email and password' do

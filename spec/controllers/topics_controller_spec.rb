@@ -23,15 +23,7 @@ describe TopicsController do
     end
 
     it 'populates an answer with new message' do
-      expect(assigns(:answer)).to be_a_new(Message)
-    end
-
-    it 'populated message is an answer' do
-      expect(assigns(:answer).answer).to eq true
-    end
-
-    it 'populated answer belongs to topic' do
-      expect(assigns(:answer).topic).to eq topic
+      expect(assigns(:answer)).to eq assigns(:topic).answers.last
     end
 
     it 'renders show view' do
@@ -61,9 +53,7 @@ describe TopicsController do
     before { login_user }
 
     let(:topic_attributes) do
-      a = attributes_for(:topic)
-      a['question_attributes'] = attributes_for(:question)
-      a
+      attributes_for(:topic).merge(question_attributes: attributes_for(:question))
     end
 
     def create_topic
@@ -76,7 +66,8 @@ describe TopicsController do
       end
 
       it 'creates new question message' do
-        expect { create_topic }.to change(Message, :count).by(1)
+        create_topic
+        expect(assigns(:topic).question).to be_persisted
       end
 
       it 'redirects to show view' do

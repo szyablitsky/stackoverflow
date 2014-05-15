@@ -16,10 +16,10 @@ class TopicsController < ApplicationController
 
   def create
     @form = new_form
+    @topic = Topic.new
     if @form.validate(params[:question])
-      save_topic do |topic|
-        redirect_to question_path(topic)
-      end
+      save_topic
+      redirect_to question_path(@topic)
     else
       render :new
     end
@@ -32,12 +32,10 @@ class TopicsController < ApplicationController
   end
 
   def save_topic
-    topic = Topic.new
     @form.save do |data, nested|
-      topic.title = data.title
-      topic.build_question(nested[:question])
-      topic.save!
-      yield topic if block_given?
+      @topic.title = data.title
+      @topic.build_question(nested[:question])
+      @topic.save!
     end
   end
 end

@@ -1,0 +1,14 @@
+.row
+  .col-md-4.col-md-offset-4
+    .panel.panel-default
+      .panel-heading
+        .h1.panel-title Sign in
+      .panel-body
+        = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          = f.email_field :email, autofocus: true
+          = f.password_field :password, autocomplete: 'off'
+          - if devise_mapping.rememberable?
+            = f.check_box :remember_me
+          = f.submit 'Sign in', class: 'btn btn-primary'
+      .panel-footer
+        = render 'devise/shared/links'

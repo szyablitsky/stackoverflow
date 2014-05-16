@@ -1,3 +1,38 @@
-#answers ul
+@mixin no-bullets-list
   list-style: none
   padding-left: 0
+
+ul#questions
+  @include no-bullets-list
+  .counters
+    float: left
+    margin-right: 10px
+    .views
+      color: gray
+    .answers.empty
+      color: darkred
+    .votes, .answers, .views
+      margin-right: 10px
+      display: inline-block
+      padding: 0 10px
+      .mini-counts
+        text-align: center
+        font-size: 1.5em
+        font-weight: bold
+  .summary
+    h3
+      margin-top: 0
+
+.votecell
+  width: 60px
+
+.user-info
+  font-size: .9em
+  float: right
+  padding: 1px 5px
+  background-color: #e0eaf1
+  .reputation-score
+    font-weight: bold
+
+#answers ul
+  @include no-bullets-list

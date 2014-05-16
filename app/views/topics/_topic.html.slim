@@ -1,1 +1,19 @@
-li = link_to topic.title, question_path(topic)
+li.clearfix
+  .counters
+    .votes
+      .mini-counts 0
+      p.small votes
+    .answers class="#{'empty' if topic.answers.count.zero?}"
+      .mini-counts = topic.answers.count
+      p.small answers
+    .views
+      .mini-counts 0
+      p.small views
+  .summary.clearfix
+    h3 = link_to topic.title, question_path(topic)
+    .tags
+    .last-activity
+      => topic.question.author.name
+      span title='reputation score'
+        = topic.question.author.reputation
+  hr

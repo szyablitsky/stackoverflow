@@ -1,7 +1,7 @@
 - unless answers.count.zero?
-  h2 = pluralize(answers.count, 'Answer')
+  h3 = pluralize(answers.count, 'Answer')
   ul
     - answers.each do |answer|
       - if answer.persisted?
         hr
-        = render answer
+        li = render answer

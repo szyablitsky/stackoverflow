@@ -14,10 +14,12 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 gem 'jquery-rails'
+gem 'rails-timeago'
 gem 'turbolinks'
 
 gem 'devise'
 gem 'reform'
+gem 'draper'
 
 gem 'bootstrap_form'
 gem 'nav_lynx'
@@ -28,6 +30,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rb-readline'
+  gem 'forgery'
 end
 
 group :development, :test do

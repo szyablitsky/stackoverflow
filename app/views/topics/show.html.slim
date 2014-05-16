@@ -1,6 +1,6 @@
 h1 = @topic.title
 hr
-p = @topic.question.body
+= render @topic.question
 
 section#answers
   = render 'answers', answers: @topic.answers

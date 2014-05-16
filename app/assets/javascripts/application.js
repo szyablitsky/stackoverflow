@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require rails-timeago
 //= require turbolinks
 //= require bootstrap/transition
 //= require bootstrap/collapse

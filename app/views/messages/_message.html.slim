@@ -1,1 +1,18 @@
-li = message.body
+table.fw
+  tr
+    td.votecell rowspan="2"
+      .vote
+    td.postcell
+      p = message.body
+      .tags
+      .user-info
+        div
+          => message.answer ? 'answered' : 'asked'
+          = timeago_tag message.created_at
+        => message.author.name
+        br
+        span.reputation-score title='reputation score'
+          = message.author.reputation
+  tr
+    td
+      /p add coment

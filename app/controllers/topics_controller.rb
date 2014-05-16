@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @topics = Topic.all
+    @topics = Topic.all.includes(:question, :answers)
   end
 
   def show

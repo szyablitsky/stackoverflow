@@ -34,7 +34,7 @@ class TopicsController < ApplicationController
   def save_topic
     @form.save do |data, nested|
       @topic.title = data.title
-      @topic.build_question(nested[:question])
+      @topic.build_question(nested[:question].merge(author:current_user))
       @topic.save!
     end
   end

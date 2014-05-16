@@ -22,7 +22,7 @@ describe TopicsController do
       expect(assigns(:topic)).to eq topic
     end
 
-    it 'populates an answer with new message' do
+    it "populates an answer with new topic's message" do
       expect(assigns(:answer)).to eq assigns(:topic).answers.last
     end
 
@@ -50,11 +50,13 @@ describe TopicsController do
   end
 
   describe 'POST #create' do
-    before { login_user }
-
+    let(:user) { create(:user) }
     let(:topic_attributes) do
-      attributes_for(:topic).merge(question_attributes: attributes_for(:question))
+      attributes_for(:topic)
+        .merge(question_attributes: attributes_for(:question))
     end
+
+    before { login user }
 
     def create_topic
       post :create, question: topic_attributes
@@ -65,9 +67,9 @@ describe TopicsController do
         expect { create_topic }.to change(Topic, :count).by(1)
       end
 
-      it 'creates new question message' do
+      it 'creates new question message linked to logged in user' do
         create_topic
-        expect(assigns(:topic).question).to be_persisted
+        expect(assigns(:topic).question.author).to eq(user)
       end
 
       it 'redirects to show view' do

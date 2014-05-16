@@ -3,6 +3,7 @@ FactoryGirl.define do
     body 'Question body'
     topic
     answer true
+    author
 
     factory :question do
       answer false

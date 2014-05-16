@@ -3,6 +3,7 @@ require_relative 'features_helper'
 feature 'Sign up' do
   scenario 'User can sign up with email and password' do
     visit new_user_registration_path
+    fill_in 'Name', with: 'test_user'
     fill_in 'Email', with: 'test@example.com'
     fill_in 'Password', with: 'Password1'
     fill_in 'Password confirmation', with: 'Password1'
@@ -15,16 +16,17 @@ feature 'Sign up' do
     visit new_user_registration_path
     click_button 'Sign up'
 
-    expect(page).to have_content 'error'
+    expect(page).to have_content "can't be blank"
   end
 
   scenario 'User can not sign up when password and confirmation does not match' do
     visit new_user_registration_path
+    fill_in 'Name', with: 'test_user'
     fill_in 'Email', with: 'test@example.com'
     fill_in 'Password', with: 'Password1'
     fill_in 'Password confirmation', with: 'Password2'
     click_button 'Sign up'
 
-    expect(page).to have_content(/error.+match/)
+    expect(page).to have_content("doesn't match")
   end
 end

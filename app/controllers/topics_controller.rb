@@ -11,14 +11,14 @@ class TopicsController < ApplicationController
   end
 
   def new
-    @form = new_form
+    @topic = Topic.new
+    @topic.build_question
   end
 
   def create
-    @form = new_form
-    @topic = Topic.new
-    if @form.validate(params[:question])
-      save_topic
+    @topic = Topic.new(topic_params)
+    @topic.question.author = current_user
+    if @topic.save
       redirect_to question_path(@topic)
     else
       render :new
@@ -27,15 +27,7 @@ class TopicsController < ApplicationController
 
   private
 
-  def new_form
-    QuestionForm.new(Topic.new(question: Message.new))
-  end
-
-  def save_topic
-    @form.save do |data, nested|
-      @topic.title = data.title
-      @topic.build_question(nested[:question].merge(author: current_user))
-      @topic.save!
-    end
+  def topic_params
+    params.require(:topic).permit(:title, question_attributes: [:body])
   end
 end

@@ -32,16 +32,17 @@ describe TopicsController do
   end
 
   describe 'GET #new' do
-    let(:form) { instance_double(QuestionForm) }
-
-    before(:each) do
-      allow(QuestionForm).to receive(:new) { form }
+    before do
       login_user
       get :new
     end
 
-    it 'creates a new Question form' do
-      expect(assigns(:form)).to eq(form)
+    it 'creates a new topic' do
+      expect(assigns(:topic)).to be_a_new(Topic)
+    end
+
+    it 'creates a new question' do
+      expect(assigns(:topic).question).to be_a_new(Message)
     end
 
     it 'renders new view' do
@@ -59,7 +60,7 @@ describe TopicsController do
     before { login user }
 
     def create_topic
-      post :create, question: topic_attributes
+      post :create, topic: topic_attributes
     end
 
     context 'with valid attributes' do

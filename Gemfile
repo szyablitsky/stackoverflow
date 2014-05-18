@@ -18,7 +18,7 @@ gem 'rails-timeago'
 gem 'turbolinks'
 
 gem 'devise'
-gem 'reform'
+# gem 'reform'
 gem 'draper'
 
 gem 'bootstrap_form'

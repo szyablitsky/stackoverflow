@@ -1,4 +1,4 @@
-= bootstrap_form_for @form do |f|
+= bootstrap_form_for @topic, url: questions_path(@topic) do |f|
   = f.text_field :title
   = f.fields_for :question do |q|
     = q.text_area :body, hide_label: :true

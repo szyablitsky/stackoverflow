@@ -9,7 +9,7 @@ feature 'Asking question' do
       click_link 'Ask question'
 
       fill_in 'Title', with: 'Some question title'
-      fill_in 'question_question_attributes_body', with: 'The body of question'
+      fill_in 'Body', with: 'The body of question'
       click_button 'Post your question'
 
       expect(page).to have_content 'Some question title'

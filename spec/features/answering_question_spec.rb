@@ -4,7 +4,7 @@ feature 'Answering question', %q(
   Signed in user can add an aswer to the question
   ) do
 
-  given(:topic) { create(:topic_with_question) }
+  given(:topic) { create(:topic) }
 
   def answer_question
     visit question_path(topic)

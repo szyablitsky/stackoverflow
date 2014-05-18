@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe MessagesController do
   describe 'POST #create' do
-    let!(:topic) { create(:topic_with_question) }
+    let!(:topic) { create(:topic) }
     let(:answer) { attributes_for(:answer) }
     let(:user) { create(:user) }
 

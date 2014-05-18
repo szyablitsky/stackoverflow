@@ -3,7 +3,7 @@ FactoryGirl.define do
     body 'Question body'
     topic
     answer true
-    author
+    association :author, factory: :user
 
     factory :question do
       answer false

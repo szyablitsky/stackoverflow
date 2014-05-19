@@ -12,16 +12,17 @@ ul#questions
     .answers.empty
       color: darkred
     .votes, .answers, .views
-      margin-right: 10px
+      width: 60px
+      text-align: center
       display: inline-block
-      padding: 0 10px
       .mini-counts
-        text-align: center
         font-size: 1.5em
         font-weight: bold
   .summary
     h3
       margin-top: 0
+    .last-activity
+      float: right
 
 .votecell
   width: 60px
@@ -36,3 +37,8 @@ ul#questions
 
 #answers ul
   @include no-bullets-list
+
+.qinfo
+  .value
+    font-weight: bold
+    padding-left: 5px

@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :topic do
     sequence(:title) { |n| "Question #{n}" }
+    views 0
 
     after :create do |topic|
       create(:question, topic: topic)

@@ -2,11 +2,12 @@ class TopicsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @topics = Topic.all.includes(:question, :answers)
+    @topics = Topic.all.includes(:question, :answers).decorate
   end
 
   def show
     @topic = Topic.includes(:question, :answers).find(params[:id])
+    @topic.increment_views
     @answer = @topic.answers.build
   end
 

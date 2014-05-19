@@ -9,14 +9,19 @@ describe TopicsController do
       expect(assigns(:topics)).to match_array(topics)
     end
 
+    it 'decorates topics' do
+      expect(assigns(:topics)).to be_decorated
+    end
+
     it 'renders index view' do
       expect(response).to render_template :index
     end
   end
 
   describe 'GET #show' do
-    let(:topic) { create(:topic_with_answers) }
-    before(:each) { get :show, id: topic }
+    let(:topic) { create(:topic_with_answers, views: 10) }
+    
+    before { get :show, id: topic }
 
     it 'populates a topic' do
       expect(assigns(:topic)).to eq topic
@@ -28,6 +33,11 @@ describe TopicsController do
 
     it 'renders show view' do
       expect(response).to render_template :show
+    end
+
+    it 'increments views' do
+      topic.reload
+      expect(topic.views).to eq(11)
     end
   end
 

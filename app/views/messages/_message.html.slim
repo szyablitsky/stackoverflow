@@ -3,7 +3,7 @@ table.fw
     td.votecell rowspan="2"
       .vote
     td.postcell
-      p = message.body
+      p = simple_format(message.body)
       .tags
       .user-info
         div

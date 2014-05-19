@@ -2,13 +2,13 @@ li.clearfix
   .counters
     .votes
       .mini-counts 0
-      p.small votes
-    .answers class="#{'empty' if topic.answers.count.zero?}"
+      p.small = topic.votes_label
+    .answers class=topic.answers_class
       .mini-counts = topic.answers.count
-      p.small answers
+      p.small = topic.answers_label
     .views
-      .mini-counts 0
-      p.small views
+      .mini-counts = topic.views
+      p.small = topic.views_label
   .summary.clearfix
     h3 = link_to topic.title, question_path(topic)
     .tags

@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require rails-timeago
 //= require turbolinks
@@ -18,4 +19,4 @@
 //= require bootstrap/collapse
 //= require bootstrap/alert
 //= require common
-//= require_tree .
+//= require topic

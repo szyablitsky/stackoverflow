@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :messages, inverse_of: :author
+  has_many :comments, inverse_of: :author
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 end

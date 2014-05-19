@@ -1,0 +1,7 @@
+- comments.each do |comment|
+  - if comment.persisted?
+    li.comment
+      => comment.body
+      ' &mdash;
+      => comment.author.name
+      = timeago_tag comment.created_at

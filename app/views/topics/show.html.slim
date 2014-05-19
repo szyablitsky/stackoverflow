@@ -2,16 +2,18 @@ h1 = @topic.title
 hr
 .row
   .col-md-9
-    = render @topic.question
+    .question = render @topic.question
 
     section#answers
-      = render 'answers', answers: @topic.answers
+      - unless @topic.answers.count.zero?
+        = render 'answers', answers: @topic.answers
 
     hr
     - if user_signed_in?
-      = bootstrap_form_for @answer, url: question_answers_path(@topic), remote: true do |f|
+      = bootstrap_form_for @answer, url: question_answers_path(@topic),
+        remote: true do |f|
         = f.text_area :body, label: 'Your answer'
-        = f.submit 'Post your answer'
+        = f.submit 'Post your answer', class: 'btn btn-primary'
     - else
       p
         ' You should
@@ -28,3 +30,4 @@ hr
       tr
         td viewed
         td.value = pluralize @topic.views, 'time'
+    h4 Related

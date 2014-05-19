@@ -6,24 +6,28 @@ describe MessagesController do
     let(:answer) { attributes_for(:answer) }
     let(:user) { create(:user) }
 
-    before { login user }
-
     def create_answer
       post :create, question_id: topic, message: answer, format: :js
     end
 
-    it 'renders create template' do
-      create_answer
-      expect(response).to render_template :create
+    context 'for authenticated user' do
+      before { login user }
+
+      it 'creates answer linked to topic' do
+        expect { create_answer }.to change(topic.answers, :count).by(1)
+      end
+
+      it 'creates answer linked to logged in user' do
+        create_answer
+        expect(assigns(:answer).author).to eq(user)
+      end
     end
 
-    it 'creates answer linked to topic' do
-      expect { create_answer }.to change(topic.answers, :count).by(1)
-    end
-
-    it 'creates answer linked to logged in user' do
-      create_answer
-      expect(assigns(:answer).author).to eq(user)
+    context 'for non authenticated user' do
+      it 'should return unauthorized status' do
+        create_answer
+        expect(response.status).to eq 401
+      end
     end
   end
 end

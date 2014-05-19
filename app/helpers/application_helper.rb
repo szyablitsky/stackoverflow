@@ -7,4 +7,8 @@ module ApplicationHelper
       else type.to_s
       end
   end
+
+  def disabled_when_reputation_less_than(val)
+    (current_user.reputation < val) ? ' disabled' : ''
+  end
 end

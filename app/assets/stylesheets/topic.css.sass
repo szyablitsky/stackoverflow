@@ -31,12 +31,26 @@ ul#questions
   font-size: .9em
   float: right
   padding: 1px 5px
-  background-color: #e0eaf1
+  background-color: aliceblue
   .reputation-score
     font-weight: bold
 
 #answers ul
   @include no-bullets-list
+
+.comments-list
+  margin-top: 10px
+  @include no-bullets-list
+  .comment
+    font-size: 0.9em
+    padding: 3px 5px
+    border-bottom: 1px dotted lightgray
+    &:hover
+      background-color: aliceblue
+    &:first-child
+      border-top: 1px dotted gray
+    time
+      color: gray
 
 .qinfo
   .value

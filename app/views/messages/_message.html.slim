@@ -1,4 +1,4 @@
-table.fw
+table.fw id="message-#{message.id}"
   tr
     td.votecell rowspan="2"
       .vote
@@ -14,5 +14,19 @@ table.fw
         span.reputation-score title='reputation score'
           = message.author.reputation
   tr
-    td
-      /p add coment
+    td.comments
+      ul.comments-list
+        - unless message.comments.count.zero?
+          = render 'topics/comments', comments: message.comments
+      - if user_signed_in?
+        = link_to 'add comment', 'javascript:void();',
+          class: 'add-comment' + disabled_when_reputation_less_than(50)
+        .alert.alert-warning.hidden
+          button.close type='button' aria-hidden='true' &times;
+          | You must have <strong>50 reputation</strong> to comment
+        = bootstrap_form_for message.comments.build,
+          url: message_comments_path(message),
+          remote: true, html: { style: 'display: none;' } do |f|
+          = f.text_area :body, label: 'Your comment'
+          => f.submit 'Post your comment', class: 'btn btn-primary'
+          = f.button 'Cancel', class: 'btn btn-default cancel-comment'

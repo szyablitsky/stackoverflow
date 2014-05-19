@@ -14,8 +14,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 gem 'jquery-rails'
-gem 'rails-timeago'
+gem 'jquery-turbolinks'
 gem 'turbolinks'
+gem 'rails-timeago'
 
 gem 'devise'
 # gem 'reform'
@@ -35,7 +36,7 @@ end
 
 group :development, :test do
   gem 'spring-commands-rspec'
-  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'rspec-rails', '~> 3.0.0.rc'
   gem 'launchy'
   gem 'factory_girl_rails'
 end

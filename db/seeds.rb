@@ -18,4 +18,8 @@ Message.create!(body: Forgery(:lorem_ipsum).paragraphs, answer: false, topic: to
 end
 
 topic = Topic.create!(title: 'Question without answers')
-Message.create!(body: Forgery(:lorem_ipsum).paragraphs, answer: false, topic: topic, author: user)
+question = Message.create!(body: Forgery(:lorem_ipsum).paragraphs, answer: false, topic: topic, author: user)
+(1..3).each do |n|
+  Comment.create!(body: Forgery(:lorem_ipsum).sentences, message: question, author: user)
+end
+

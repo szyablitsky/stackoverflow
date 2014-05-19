@@ -1,10 +1,8 @@
 require_relative 'features_helper'
 
 feature 'Sign in' do
-  given(:user) { create(:user) }
-
   scenario 'User can sign in with valid email and password' do
-    sign_in user
+    login_user
 
     expect(page).to have_content 'Signed in successfully.'
   end

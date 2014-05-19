@@ -2,10 +2,8 @@ require_relative 'features_helper'
 
 feature 'Sign out' do
   context 'when signed in' do
-    given(:user) { create(:user) }
-
     scenario 'user can sign out' do
-      sign_in user
+      login_user
 
       visit '/'
       click_link 'Sign out'

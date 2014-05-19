@@ -2,7 +2,7 @@ require_relative 'features_helper'
 
 feature 'Asking question' do
   context 'when signed in' do
-    background { sign_in(create(:user)) }
+    background { login_user }
 
     scenario 'user can add a question' do
       visit '/'

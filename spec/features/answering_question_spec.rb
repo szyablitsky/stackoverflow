@@ -13,7 +13,7 @@ feature 'Answering question', %q(
   end
 
   context 'when signed in' do
-    background { sign_in(create(:user)) }
+    background { login_user }
 
     scenario 'user can add an answer with valid data', js: true do
       answer_question

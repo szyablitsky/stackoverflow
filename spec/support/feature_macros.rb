@@ -1,5 +1,9 @@
 module FeatureMacros
-  def sign_in(user)
+  def login_user
+    login create(:user)
+  end
+
+  def login(user)
     visit '/'
     click_link 'Sign in'
     fill_in 'Email', with: user.email

@@ -1,7 +1,6 @@
 module ControllerMacros
   def login_user
-    @request.env['devise.mapping'] = Devise.mappings[:user]
-    sign_in FactoryGirl.create(:user)
+    login create(:user)
   end
 
   def login(user)

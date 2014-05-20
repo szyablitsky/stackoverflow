@@ -13,7 +13,7 @@ class Topic < ActiveRecord::Base
   end
 
   after_initialize :set_defaults
-  
+
   private
 
   def set_defaults

@@ -18,5 +18,5 @@ class Topic < ActiveRecord::Base
 
   def set_defaults
     self.views ||= 0
-  end    
+  end
 end

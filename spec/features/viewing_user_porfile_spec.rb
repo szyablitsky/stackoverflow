@@ -1,7 +1,7 @@
 require_relative 'features_helper'
 
 feature 'Viewing user profile' do
-  given(:user) { create(:user, reputation: 38492) }
+  given(:user) { create(:user, reputation: 38_492) }
 
   scenario 'User can see information about registered user' do
     visit user_path(user)

@@ -7,7 +7,6 @@
           = resource_name.to_s.humanize
       .panel-body
         = bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-          = f.text_field :name, autofocus: true
           = f.email_field :email
           - if devise_mapping.confirmable? && resource.pending_reconfirmation?
             ' Currently waiting confirmation for:

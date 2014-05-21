@@ -1,0 +1,9 @@
+.h1 #{@user.name} &ndash; edit
+hr
+= bootstrap_form_for @user do |f|
+  = f.text_field :name, autofocus: true
+  = f.submit 'Save profile', class: 'btn btn-primary'
+hr
+= link_to 'edit your registration info', edit_user_registration_path
+span.text-muted<
+  | (password and email)

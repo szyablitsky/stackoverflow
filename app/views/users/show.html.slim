@@ -5,6 +5,8 @@ hr
     .reputation = @user.reputation
     p reputation
   .col-md-6.data
+    - if @user == current_user
+      p = link_to 'edit profile', edit_user_path(current_user)
     table
       tbody
         tr
@@ -19,6 +21,7 @@ hr
           th stats
           td profile views
           td NA
+
 
 h3 Summary
 hr

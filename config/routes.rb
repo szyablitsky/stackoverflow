@@ -11,5 +11,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :update]
   end
 
+  resources :users, only: [:show]
+
   root 'topics#index'
 end

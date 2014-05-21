@@ -1,0 +1,35 @@
+h1 = @user.name
+hr
+.row.user-profile
+  .col-md-2.avatar
+    .reputation = @user.reputation
+    p reputation
+  .col-md-6.data
+    table
+      tbody
+        tr
+          th rowspan='2' visits
+          td member since
+          td = @user.created_at.strftime '%B %d, %Y'
+        tr
+          td seen
+          td = timeago_tag @user.last_sign_in_at
+      tbody
+        tr
+          th stats
+          td profile views
+          td NA
+
+h3 Summary
+hr
+.row.user-summary
+  .col-md-6
+    h4 Answers
+    ul
+      - @answers.each do |topic|
+        li = link_to topic.title, question_path(topic)
+  .col-md-6
+    h4 Questions
+    ul
+      - @questions.each do |topic|
+        li = link_to topic.title, question_path(topic)

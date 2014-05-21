@@ -28,7 +28,7 @@ html lang="en"
           p.navbar-text.navbar-right
             - if user_signed_in?
               ' Signed in as
-              => link_to current_user.name, edit_user_registration_path, class: 'navbar-link'
+              => link_to current_user.name, user_path(current_user), class: 'navbar-link'
               | (
               = link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'navbar-link'
               | )

@@ -13,7 +13,7 @@ feature 'Editing user profile' do
       expect(page).to_not have_link 'edit profile'
     end
 
-    scenario "user can edit his profile" do
+    scenario 'user can edit his profile' do
       visit user_path(user1)
       click_link 'edit profile'
 

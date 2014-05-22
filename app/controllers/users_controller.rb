@@ -13,8 +13,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user == current_user
+    if current_user.id.to_s == params[:id]
+      @user = User.find(params[:id])
       @user.update(user_params)
       respond_with @user
     else

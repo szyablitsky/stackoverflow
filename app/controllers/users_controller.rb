@@ -4,8 +4,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @questions = Topic.joins(:question).where(messages: {author_id: @user})
-    @answers = Topic.joins(:answers).where(messages: {author_id: @user}).distinct
+    @questions = Topic.with_questions_by @user
+    @answers = Topic.with_answers_by @user
   end
 
   def edit

@@ -12,6 +12,14 @@ class Topic < ActiveRecord::Base
     self.save!
   end
 
+  def self.with_questions_by(user)
+    joins(:question).where messages: {author_id: user}
+  end
+
+  def self.with_answers_by(user)
+    joins(:answers).where(messages: {author_id: user}).distinct
+  end
+
   after_initialize :set_defaults
 
   private

@@ -19,4 +19,4 @@
 //= require bootstrap/collapse
 //= require bootstrap/alert
 //= require common
-//= require topic
+//= require topics

@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       @user.update(user_params)
       respond_with @user
     else
-      render nothing: true, status: :forbidden
+      head :forbidden
     end
   end
 

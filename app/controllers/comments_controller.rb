@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
       params_with_author = comment_params.merge(author: current_user)
       @comment = @message.comments.create(params_with_author)
     else
-      render nothing: true, status: :forbidden
+      head :forbidden
     end
   end
 

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :messages, only: [] do
-    resources :comments, only: [:create, :update]
+    resources :comments, only: [:create]
   end
 
   resources :users, only: [:show, :edit, :update]

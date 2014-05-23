@@ -25,13 +25,13 @@ table.fw id="message-#{message.id}"
           = render 'topics/comments', comments: message.comments
       - if user_signed_in?
         = link_to 'add comment', 'javascript:void();',
-          class: 'add-comment' + disabled_when_reputation_less_than(50)
-        .alert.alert-warning.hidden
-          button.close type='button' aria-hidden='true' &times;
-          | You must have <strong>50 reputation</strong> to comment
-        = bootstrap_form_for message.comments.build,
-          url: message_comments_path(message),
-          remote: true, html: { style: 'display: none;' } do |f|
-          = f.text_area :body, label: 'Your comment'
-          => f.submit 'Post your comment', class: 'btn btn-primary'
-          = f.button 'Cancel', class: 'btn btn-default cancel-comment'
+          class: 'add-comment' + disabled_when_reputation_less_than(Privilege.create_comment),
+          data: { message_id: message.id }
+        - unless message.answer
+          = bootstrap_form_for message.comments.build,
+            url: message_comments_path(message), remote: true,
+            disable_with: 'Submitting...', data: { type: :json },
+            html: { style: 'display: none;' } do |f|
+            = f.text_area :body, label: 'Your comment'
+            => f.submit 'Post your comment', class: 'btn btn-primary'
+            = f.button 'Cancel', class: 'btn btn-default cancel-comment'

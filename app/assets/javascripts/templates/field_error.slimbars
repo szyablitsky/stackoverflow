@@ -1,0 +1,2 @@
+span.help-block
+  | {{error}}

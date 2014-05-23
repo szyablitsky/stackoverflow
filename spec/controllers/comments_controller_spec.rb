@@ -7,7 +7,7 @@ describe CommentsController do
     let(:user) { create(:user, reputation: 50) }
 
     def create_comment
-      post :create, message_id: message, comment: comment, format: :js
+      post :create, message_id: message, comment: comment, format: :json
     end
 
     context 'for authenticated user' do

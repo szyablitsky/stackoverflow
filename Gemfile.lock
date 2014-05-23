@@ -98,6 +98,11 @@ GEM
     gravatar_image_tag (1.2.0)
     haml (4.0.5)
       tilt
+    handlebars_assets (0.15)
+      execjs (>= 1.2.9)
+      multi_json
+      sprockets (>= 2.0.3)
+      tilt
     highline (1.6.21)
     hike (1.2.3)
     i18n (0.6.9)
@@ -110,6 +115,8 @@ GEM
     jquery-turbolinks (2.0.2)
       railties (>= 3.1.0)
       turbolinks
+    jquery-ui-rails (4.2.1)
+      railties (>= 3.2.16)
     json (1.8.1)
     launchy (2.4.2)
       addressable (~> 2.3)
@@ -257,9 +264,11 @@ DEPENDENCIES
   factory_girl_rails
   forgery
   gravatar_image_tag
+  handlebars_assets
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
+  jquery-ui-rails
   launchy
   nav_lynx
   pg

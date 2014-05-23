@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery.ui.effect-bounce
 //= require rails-timeago
 //= require turbolinks
 //= require bootstrap/transition
@@ -20,3 +21,5 @@
 //= require bootstrap/alert
 //= require common
 //= require topics
+//= require handlebars.runtime
+//= require_tree ./templates

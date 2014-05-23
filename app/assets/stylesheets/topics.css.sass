@@ -40,7 +40,7 @@ ul#questions
   @include no-bullets-list
 
 .comments-list
-  margin-top: 10px
+  margin: 0
   @include no-bullets-list
   .comment
     font-size: 0.9em
@@ -50,6 +50,9 @@ ul#questions
       background-color: aliceblue
     &:first-child
       border-top: 1px dotted gray
+      margin-top: 10px
+    &:last-child
+      margin-bottom: 10px
     time
       color: gray
 

@@ -5,14 +5,19 @@ table.fw id="message-#{message.id}"
     td.postcell
       p = simple_format(message.body)
       .tags
-      .user-info
-        div
+      table.user-info
+        tr: td colspan='2'
           => message.answer ? 'answered' : 'asked'
           = timeago_tag message.created_at
-        => message.author.name
-        br
-        span.reputation-score title='reputation score'
-          = message.author.reputation
+        tr
+          td
+            = gravatar_image_tag message.author.email,
+              alt: message.author.name, gravatar: { size: 30 }
+          td
+            => link_to message.author.name, user_path(message.author)
+            br
+            span.reputation-score title='reputation score'
+              = message.author.reputation
   tr
     td.comments
       ul.comments-list

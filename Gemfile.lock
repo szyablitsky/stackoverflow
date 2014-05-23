@@ -95,6 +95,7 @@ GEM
       railties (>= 3.0.0)
     fastercsv (1.5.5)
     forgery (0.6.0)
+    gravatar_image_tag (1.2.0)
     haml (4.0.5)
       tilt
     highline (1.6.21)
@@ -255,6 +256,7 @@ DEPENDENCIES
   draper
   factory_girl_rails
   forgery
+  gravatar_image_tag
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks

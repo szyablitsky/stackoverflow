@@ -3,5 +3,5 @@
     li.comment
       => comment.body
       ' &mdash;
-      => comment.author.name
+      => link_to comment.author.name, user_path(comment.author)
       = timeago_tag comment.created_at

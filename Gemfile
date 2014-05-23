@@ -24,6 +24,7 @@ gem 'draper'
 
 gem 'bootstrap_form'
 gem 'nav_lynx'
+gem 'gravatar_image_tag'
 
 group :development do
   gem 'brakeman'

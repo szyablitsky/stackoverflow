@@ -2,6 +2,8 @@ h1 = @user.name
 hr
 .row.user-profile
   .col-md-2.avatar
+    = gravatar_image_tag @user.email, alt: @user.name,
+       gravatar: { size: 150 }
     .reputation = @user.reputation
     p reputation
   .col-md-6.data

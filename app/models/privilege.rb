@@ -4,6 +4,6 @@ class Privilege
   }
 
   def self.method_missing(symbol)
-    @@privileges[symbol] ? @@privileges[symbol] : 100000000
+    @@privileges[symbol] ? @@privileges[symbol] : 1_000_000_000
   end
 end

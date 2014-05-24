@@ -18,3 +18,4 @@
 /coverage
 
 .rubocop.yml
+npm-debug.log

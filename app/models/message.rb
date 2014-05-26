@@ -2,6 +2,17 @@ class Message < ActiveRecord::Base
   belongs_to :topic
   belongs_to :author, class_name: 'User', inverse_of: :messages
   has_many :comments, inverse_of: :message
+  has_many :attachments, inverse_of: :message
+
+  accepts_nested_attributes_for :attachments, reject_if: :all_blank
 
   validates :body, presence: true
+
+  def has_attachments?
+    attachments.count > 0
+  end
+
+  def has_comments?
+    comments.count > 0
+  end
 end

@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Topic do
   it { expect(subject).to validate_presence_of :title }
   it { expect(subject).to validate_numericality_of :views }
+  it { expect(subject).to accept_nested_attributes_for :question }
 
   it do
     expect(subject).to have_one(:question)

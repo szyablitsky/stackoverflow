@@ -1,9 +1,14 @@
+- message = message.decorate
 table.fw id="message-#{message.id}"
   tr
     td.votecell rowspan="2"
       .vote
     td.postcell
       p = simple_format(message.body)
+      - if message.has_attachments?
+        p
+          strong> Attachments:
+          = message.attachments_list
       .tags
       table.user-info
         tr: td colspan='2'
@@ -21,12 +26,11 @@ table.fw id="message-#{message.id}"
   tr
     td.comments
       ul.comments-list
-        - unless message.comments.count.zero?
+        - if message.has_comments?
           = render 'topics/comments', comments: message.comments
       - if user_signed_in?
         = link_to 'add comment', 'javascript:void();',
-          class: 'add-comment' + disabled_when_reputation_less_than(Privilege.create_comment),
-          data: { message_id: message.id }
+          class: message.add_comment_class, data: { message_id: message.id }
         - unless message.answer
           = bootstrap_form_for message.comments.build,
             url: message_comments_path(message), remote: true,

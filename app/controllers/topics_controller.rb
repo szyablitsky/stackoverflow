@@ -29,6 +29,10 @@ class TopicsController < ApplicationController
   private
 
   def topic_params
-    params.require(:topic).permit(:title, question_attributes: [:body])
+    params.require(:topic).permit(
+      :title,
+      question_attributes: [:body,
+                            attachments_attributes: [:file]]
+    )
   end
 end

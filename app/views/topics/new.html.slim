@@ -1,5 +1,11 @@
-= bootstrap_form_for @topic, url: questions_path(@topic) do |f|
+= bootstrap_nested_form_for @topic, url: questions_path(@topic) do |f|
   = f.text_field :title
   = f.fields_for :question do |q|
     = q.text_area :body, hide_label: :true
-  =f.submit 'Post your question'
+    = q.fields_for :attachments do |a|
+      = a.file_field :file, hide_label: true
+      = a.form_group
+        = a.link_to_remove 'delete'
+    = q.form_group
+      = q.link_to_add "add file", :attachments
+  =f.submit 'Post your question', class: 'btn btn-primary'

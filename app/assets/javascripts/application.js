@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery_nested_form
 //= require jquery.ui.effect-bounce
 //= require rails-timeago
 //= require turbolinks

@@ -23,8 +23,10 @@ gem 'rails-timeago'
 gem 'devise'
 # gem 'reform'
 gem 'draper'
+gem 'carrierwave'
 
 gem 'bootstrap_form'
+gem 'nested_form'
 gem 'nav_lynx'
 gem 'gravatar_image_tag'
 

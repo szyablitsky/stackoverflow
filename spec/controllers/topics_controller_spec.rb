@@ -12,10 +12,6 @@ describe TopicsController do
     it 'decorates topics' do
       expect(assigns(:topics)).to be_decorated
     end
-
-    it 'renders index view' do
-      expect(response).to render_template :index
-    end
   end
 
   describe 'GET #show' do
@@ -29,10 +25,6 @@ describe TopicsController do
 
     it "populates an answer with new topic's message" do
       expect(assigns(:answer)).to eq assigns(:topic).answers.last
-    end
-
-    it 'renders show view' do
-      expect(response).to render_template :show
     end
 
     it 'increments views' do
@@ -53,10 +45,6 @@ describe TopicsController do
 
     it 'creates a new question' do
       expect(assigns(:topic).question).to be_a_new(Message)
-    end
-
-    it 'renders new view' do
-      expect(response).to render_template :new
     end
   end
 

@@ -2,6 +2,8 @@
   = f.text_field :title
   = f.fields_for :question do |q|
     = q.text_area :body, hide_label: :true
+    = f.text_field :tags, value: @topic.tags.map{|t|t.name}.join(','),
+                   data: { role: 'tagsinput' }, placeholder: 'space delimited'
     = q.fields_for :attachments do |a|
       = a.file_field :file, hide_label: true
       = a.form_group

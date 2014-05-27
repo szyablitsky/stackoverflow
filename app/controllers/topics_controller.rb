@@ -18,6 +18,7 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(topic_params)
+    @topic.process_tags(params[:topic][:tags])
     @topic.question.author = current_user
     if @topic.save
       redirect_to question_path(@topic)

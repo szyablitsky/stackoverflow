@@ -1,4 +1,10 @@
 $ ->
+  if $('#topic_tags').length > 0
+    $.get '/tags.json', (data) ->
+      $('#topic_tags').select2
+        tags: data
+        tokenSeparators: [",", " "]
+
   cleanup = (form) ->
     form.find('textarea,input[type="text"],input[type="file"]').val('')
     form.find('.form-group').removeClass('has-error')
@@ -6,6 +12,12 @@ $ ->
 
   $('main')
   
+  .on 'focus', '.select2-container input', (e) ->
+    $(this).closest('.select2-choices').addClass('focus')
+
+  .on 'blur', '.select2-container input', (e) ->
+    $(this).closest('.select2-choices').removeClass('focus')
+
   .on 'click', '.add-comment', (e) ->
     e.preventDefault()
     if $(this).hasClass('disabled')

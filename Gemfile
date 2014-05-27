@@ -20,9 +20,9 @@ gem 'jquery-turbolinks'
 gem 'turbolinks'
 gem 'remotipart'
 gem 'rails-timeago'
+gem 'select2-rails'
 
 gem 'devise'
-# gem 'reform'
 gem 'draper'
 gem 'carrierwave'
 

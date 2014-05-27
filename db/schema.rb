@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140526004858) do
+ActiveRecord::Schema.define(version: 20140528001102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,22 @@ ActiveRecord::Schema.define(version: 20140526004858) do
 
   add_index "messages", ["author_id"], name: "index_messages_on_author_id", using: :btree
   add_index "messages", ["topic_id"], name: "index_messages_on_topic_id", using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "topic_tags", force: true do |t|
+    t.integer  "topic_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "topic_tags", ["tag_id"], name: "index_topic_tags_on_tag_id", using: :btree
+  add_index "topic_tags", ["topic_id"], name: "index_topic_tags_on_topic_id", using: :btree
 
   create_table "topics", force: true do |t|
     t.string   "title"

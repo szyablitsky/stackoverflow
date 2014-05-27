@@ -10,6 +10,8 @@ table.fw id="message-#{message.id}"
           strong> Attachments:
           = message.attachments_list
       .tags
+        - unless message.answer
+          = message.tags_list
       table.user-info
         tr: td colspan='2'
           => message.answer ? 'answered' : 'asked'

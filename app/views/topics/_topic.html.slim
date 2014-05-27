@@ -11,7 +11,7 @@ li.clearfix
       p.small = topic.views_label
   .summary.clearfix
     h3 = link_to topic.title, question_path(topic)
-    .tags
+    .tags = topic.tags_list
     .last-activity
       => topic.question.author.name
       span title='reputation score'

@@ -30,6 +30,17 @@ feature 'Asking question' do
       expect(page).to have_link 'spec_helper.rb'
       # expect(page).to have_link 'feature_helper.rb'
     end
+
+    scenario 'user can add tags to question', js: true do
+      tags_input = find('.select2-search-field input')
+      tags_input.native.send_keys('tag1 tag2 tag3', :Escape)
+      click_button 'Post your question'
+
+      expect(page).to have_text 'tag1'
+      expect(page).to have_text 'tag2'
+      expect(page).to_not have_text 'tag3'
+    end
+
   end
 
   context 'when not signed in' do

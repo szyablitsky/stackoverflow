@@ -1,9 +1,11 @@
 require 'spec_helper'
 
-describe Topic do
+describe Topic, type: :model do
   it { expect(subject).to validate_presence_of :title }
   it { expect(subject).to validate_numericality_of :views }
   it { expect(subject).to accept_nested_attributes_for :question }
+  it { expect(subject).to have_many(:topic_tags) }
+  it { expect(subject).to have_many(:tags).through(:topic_tags) }
 
   it do
     expect(subject).to have_one(:question)

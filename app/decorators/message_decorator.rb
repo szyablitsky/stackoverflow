@@ -9,6 +9,14 @@ class MessageDecorator < Draper::Decorator
     attachments_array.join(', ').html_safe
   end
 
+  def tags_list
+    tags_array = topic.tags.to_a
+    tags_array.map! do |tag|
+      "<span class=\"label label-info\">#{tag.name}</span>"
+    end
+    tags_array.join(' ').html_safe
+  end
+
   def add_comment_class
     disabled = h.current_user.reputation < Privilege.create_comment ?
                ' disabled' :

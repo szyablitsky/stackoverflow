@@ -21,4 +21,12 @@ class TopicDecorator < Draper::Decorator
     id = answers.where(author: user).first.id
     "#message-#{id}"
   end
+
+  def tags_list
+    tags_array = tags.to_a
+    tags_array.map! do |tag|
+      "<span class=\"label label-info\">#{tag.name}</span>"
+    end
+    tags_array.join(' ').html_safe
+  end
 end

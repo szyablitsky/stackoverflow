@@ -5,6 +5,9 @@ class Topic < ActiveRecord::Base
   has_one :question, -> { where(answer: false) }, class_name: 'Message'
   has_many :answers, -> { where(answer: true) }, class_name: 'Message'
 
+  has_many :topic_tags
+  has_many :tags, through: :topic_tags
+
   accepts_nested_attributes_for :question
 
   def increment_views
@@ -29,6 +32,15 @@ class Topic < ActiveRecord::Base
       answers.map { |answer| answer.author }.include? user
     else
       false
+    end
+  end
+
+  def process_tags(tags_string)
+    return unless tags_string
+    tags_string.split(',').each do |tag_name|
+      tag = Tag.find_by_name(tag_name)
+      tag = Tag.create(name: tag_name) unless tag
+      self.tags << tag
     end
   end
 

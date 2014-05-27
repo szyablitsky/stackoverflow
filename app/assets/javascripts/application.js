@@ -22,6 +22,7 @@
 //= require bootstrap/transition
 //= require bootstrap/collapse
 //= require bootstrap/alert
+//= require select2
 //= require common
 //= require topics
 //= require handlebars.runtime

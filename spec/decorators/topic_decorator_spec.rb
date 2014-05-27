@@ -33,4 +33,11 @@ describe TopicDecorator do
       it { expect(subject.views_label).to eq 'view' }
     end
   end
+
+  describe '#message_id_by' do
+    let(:user) { create(:user) }
+    let!(:answer) { subject.answers.create(body: 'body', author: user) }
+
+    it { expect(subject.message_id_by user).to eq "#message-#{answer.id}" }
+  end
 end

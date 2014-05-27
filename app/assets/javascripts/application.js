@@ -16,6 +16,7 @@
 //= require jquery.remotipart
 //= require jquery_nested_form
 //= require jquery.ui.effect-bounce
+//= require jquery.animate-colors
 //= require rails-timeago
 //= require turbolinks
 //= require bootstrap/transition

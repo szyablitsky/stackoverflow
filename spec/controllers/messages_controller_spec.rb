@@ -21,6 +21,15 @@ describe MessagesController do
         create_answer
         expect(assigns(:answer).author).to eq(user)
       end
+
+      context 'when already answered by this user' do
+        before { topic.answers.create(body: 'body', author: user) }
+
+        it 'assigns aswered to true' do
+          create_answer
+          expect(assigns(:answered)).to eq true
+        end
+      end
     end
 
     context 'for non authenticated user' do

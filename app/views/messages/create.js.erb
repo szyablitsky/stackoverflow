@@ -1,7 +1,12 @@
-<% if @answer.errors.present? %>
-  var message = $('<span></span>').addClass('help-block').text("can't be blank");
-  $('#message_body').parent().addClass('has-error').append(message);
+<% if @answered %>
+  alert('You already answered this question. Refresh page, please.')
 <% else %>
-  $('#answers').html('<%= j render "topics/answers", answers: @topic.answers %>');
-  $('#message_body').val('').parent().removeClass('has-error').find('.help-block').remove();
+  <% if @answer.errors.present? %>
+    var message = $('<span></span>').addClass('help-block').text("can't be blank");
+    $('#message_body').parent().addClass('has-error').append(message);
+  <% else %>
+    $('#answers').html('<%= j render "topics/answers", answers: @topic.answers %>');
+    $('#new_message').before('<%= j render "topics/answered", topic: @topic.decorate %>')
+    $('#new_message').remove()
+  <% end %>
 <% end %>

@@ -23,6 +23,10 @@ describe TopicsController do
       expect(assigns(:topic)).to eq topic
     end
 
+    it 'decorates a topic' do
+      expect(assigns(:topic)).to be_decorated
+    end
+
     it "populates an answer with new topic's message" do
       expect(assigns(:answer)).to eq assigns(:topic).answers.last
     end

@@ -16,4 +16,9 @@ class TopicDecorator < Draper::Decorator
   def views_label
     object.views == 1 ? 'view' : 'views'
   end
+
+  def message_id_by(user)
+    id = answers.where(author: user).first.id
+    "#message-#{id}"
+  end
 end

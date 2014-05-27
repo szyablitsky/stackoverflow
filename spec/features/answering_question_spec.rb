@@ -13,7 +13,9 @@ feature 'Answering question', %q(
   end
 
   context 'when signed in' do
-    background { login_user }
+    given(:user) { create(:user) }
+
+    background { login user }
 
     scenario 'user can add an answer with valid data', js: true do
       answer_question
@@ -38,11 +40,32 @@ feature 'Answering question', %q(
       # expect(page).to have_link 'feature_helper.rb'
     end
 
-    scenario 'user can not add an answer with invalid data', js: true do
+    scenario "user can't add an answer with invalid data", js: true do
       visit question_path(topic)
       click_on 'Post your answer'
 
       expect(page).to have_content "can't be blank"
+    end
+
+    context 'and already answered question' do
+      background do
+        topic.question.author = user
+        topic.save!
+        create(:answer, topic: topic, author: user)
+      end
+
+      scenario 'user should not see post answer button' do
+        visit question_path(topic)
+
+        expect(page).to_not have_button 'Post your answer'
+      end
+
+      scenario 'user should see already answered prompt' do
+        visit question_path(topic)
+
+        expect(page).to have_content(
+          'You already answered this question')
+      end
     end
   end
 

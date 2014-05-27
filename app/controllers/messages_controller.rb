@@ -3,8 +3,12 @@ class MessagesController < ApplicationController
 
   def create
     @topic = Topic.find(params[:question_id])
-    params_with_author = answer_params.merge(author: current_user)
-    @answer = @topic.answers.create(params_with_author)
+    if @topic.answered_by? current_user
+      @answered = true
+    else
+      params_with_author = answer_params.merge(author: current_user)
+      @answer = @topic.answers.create(params_with_author)
+    end
   end
 
   private

@@ -20,6 +20,18 @@ class Topic < ActiveRecord::Base
     joins(:answers).where(messages: { author_id: user }).distinct
   end
 
+  def has_answers?
+    answers.count > 0
+  end
+
+  def answered_by?(user)
+    if has_answers?
+      answers.map { |answer| answer.author }.include? user
+    else
+      false
+    end
+  end
+
   after_initialize :set_defaults
 
   private

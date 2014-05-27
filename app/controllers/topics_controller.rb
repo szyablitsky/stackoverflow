@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.includes(:question, :answers).find(params[:id])
+    @topic = Topic.includes(:question, :answers).find(params[:id]).decorate
     @topic.increment_views
     @answer = @topic.answers.build
   end

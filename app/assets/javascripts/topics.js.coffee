@@ -48,3 +48,9 @@ $ ->
       group = $form.find("#comment_#{key}").parent()
       group.addClass('has-error')
       group.append( JST['field_error']({error: value}) )
+
+  .on 'click', '.answer-link', (e) ->
+    href = $(this).attr('href').match(/(#.+)/)[0]
+    $(href).stop()
+      .animate({backgroundColor:'lightyellow'}, 500)
+      .animate({backgroundColor:'white'}, 500)

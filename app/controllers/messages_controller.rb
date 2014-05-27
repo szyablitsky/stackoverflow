@@ -10,6 +10,6 @@ class MessagesController < ApplicationController
   private
 
   def answer_params
-    params.require(:message).permit(:body)
+    params.require(:message).permit(:body, attachments_attributes: [:file])
   end
 end

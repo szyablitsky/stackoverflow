@@ -15,7 +15,7 @@ table.fw id="message-#{message.id}"
           => message.answer ? 'answered' : 'asked'
           = timeago_tag message.created_at
         tr
-          td
+          td.avatar
             = gravatar_image_tag message.author.email,
               alt: message.author.name, gravatar: { size: 30 }
           td

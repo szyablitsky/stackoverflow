@@ -24,6 +24,20 @@ feature 'Answering question', %q(
       end
     end
 
+    scenario 'user can attach files to answer', js: true do
+      visit question_path(topic)
+      fill_in 'Your answer', with: 'answer'
+      click_link 'add file'
+      attach_file 'File', 'spec/spec_helper.rb'
+      # click_link 'add file'
+      # attach_file 'File', 'spec/features/features_helper.rb'
+
+      click_button 'Post your answer'
+
+      expect(page).to have_link 'spec_helper.rb'
+      # expect(page).to have_link 'feature_helper.rb'
+    end
+
     scenario 'user can not add an answer with invalid data', js: true do
       visit question_path(topic)
       click_on 'Post your answer'

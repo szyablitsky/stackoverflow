@@ -177,6 +177,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.3.2)
     rb-readline (0.5.1)
+    remotipart (1.2.1)
     request_store (1.0.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -293,6 +294,7 @@ DEPENDENCIES
   rails (= 4.1.1)
   rails-timeago
   rb-readline
+  remotipart
   rspec-rails (~> 3.0.0.rc)
   sass-rails (~> 4.0.3)
   shoulda-matchers

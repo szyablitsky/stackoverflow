@@ -9,8 +9,8 @@ table.fw id="message-#{message.id}"
         p
           strong> Attachments:
           = message.attachments_list
-      .tags
-        - unless message.answer
+      - unless message.answer
+        .tags
           = message.tags_list
       table.user-info
         tr: td colspan='2'
@@ -36,8 +36,8 @@ table.fw id="message-#{message.id}"
         - unless message.answer
           = bootstrap_form_for message.comments.build,
             url: message_comments_path(message), remote: true,
-            disable_with: 'Submitting...', data: { type: :json },
-            html: { style: 'display: none;' } do |f|
+            data: { type: :json }, html: { style: 'display: none;' } do |f|
             = f.text_area :body, label: 'Your comment'
-            => f.submit 'Post your comment', class: 'btn btn-primary'
+            => f.submit 'Post your comment', class: 'btn btn-primary',
+              data: { disable_with: 'Submitting...' }
             = f.button 'Cancel', class: 'btn btn-default cancel-comment'

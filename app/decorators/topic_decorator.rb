@@ -6,11 +6,11 @@ class TopicDecorator < Draper::Decorator
   end
 
   def answers_class
-    'empty' if object.answers.count.zero?
+    'empty' unless object.has_answers?
   end
 
   def answers_label
-    object.answers.count == 1 ? 'answer' : 'answers'
+    object.answers_count == 1 ? 'answer' : 'answers'
   end
 
   def views_label
@@ -18,8 +18,7 @@ class TopicDecorator < Draper::Decorator
   end
 
   def message_id_by(user)
-    id = answers.where(author: user).first.id
-    "#message-#{id}"
+    "#message-#{answer_id_by user}"
   end
 
   def tags_list

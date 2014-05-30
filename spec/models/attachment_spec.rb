@@ -1,5 +1,5 @@
 require 'spec_helper'
 
 describe Attachment, type: :model do
-  it { expect(subject).to belong_to :message }
+  it { is_expected.to belong_to(:message).counter_cache(true) }
 end

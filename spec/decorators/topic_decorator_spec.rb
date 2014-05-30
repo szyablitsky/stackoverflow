@@ -7,11 +7,17 @@ describe TopicDecorator do
     it { expect(subject.votes_label).to eq 'votes' }
   end
 
+  def create_answer
+    subject.create_question attributes_for(:question)
+    subject.answers.create attributes_for(:answer)
+    subject.reload
+  end
+
   describe '#answers_class' do
     it { expect(subject.answers_class).to eq 'empty' }
 
     context 'with 1 answer' do
-      before { subject.answers.create(attributes_for(:answer)) }
+      before { create_answer }
       it { expect(subject.answers_class).to be_nil }
     end
   end
@@ -20,7 +26,7 @@ describe TopicDecorator do
     it { expect(subject.answers_label).to eq 'answers' }
 
     context 'with 1 answer' do
-      before { subject.answers.create(attributes_for(:answer)) }
+      before { create_answer }
       it { expect(subject.answers_label).to eq 'answer' }
     end
   end

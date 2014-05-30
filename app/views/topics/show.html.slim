@@ -6,7 +6,8 @@ hr
 
     section#answers
       - if @topic.has_answers?
-        = render 'answers', answers: @topic.answers
+        = render 'answers', answers: @topic.answers,
+          answers_count: @topic.answers_count
 
     hr
     - if user_signed_in?
@@ -14,7 +15,8 @@ hr
         = render 'answered', topic: @topic
       - else
         = bootstrap_nested_form_for @answer,
-          url: question_answers_path(@topic), remote: true do |f|
+          url: question_answers_path(@topic), remote: true,
+          data: { disable_with: 'Submitting...' } do |f|
           = f.text_area :body, label: 'Your answer'
           = f.fields_for :attachments do |a|
             = a.file_field :file, hide_label: true
@@ -32,7 +34,7 @@ hr
         | to answer this question
 
   .col-md-3
-    table.qinfo
+    table.question-info
       tr
         td asked
         td.value = timeago_tag @topic.question.created_at

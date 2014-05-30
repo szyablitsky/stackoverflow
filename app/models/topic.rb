@@ -2,6 +2,7 @@ class Topic < ActiveRecord::Base
   validates :title, presence: true
   validates :views, numericality: true
 
+  has_many :messages
   has_one :question, -> { where(answer: false) }, class_name: 'Message'
   has_many :answers, -> { where(answer: true) }, class_name: 'Message'
 
@@ -9,6 +10,9 @@ class Topic < ActiveRecord::Base
   has_many :tags, through: :topic_tags
 
   accepts_nested_attributes_for :question
+
+  delegate :author, to: :question
+  # delegate :created_at, to: :question
 
   def increment_views
     self.views += 1
@@ -20,11 +24,20 @@ class Topic < ActiveRecord::Base
   end
 
   def self.with_answers_by(user)
-    joins(:answers).where(messages: { author_id: user }).distinct
+    connection.select_all %Q(
+      select t.id as topic_id, t.title, m.id as message_id
+      from messages m, topics t
+      where t.id = m.topic_id
+        and m.answer = 't'
+        and m.author_id = #{user.id})
+  end
+
+  def answers_count
+    messages_count - 1
   end
 
   def has_answers?
-    answers.count > 0
+    answers_count > 0
   end
 
   def answered_by?(user)
@@ -35,13 +48,8 @@ class Topic < ActiveRecord::Base
     end
   end
 
-  def process_tags(tags_string)
-    return unless tags_string
-    tags_string.split(',').each do |tag_name|
-      tag = Tag.find_by_name(tag_name)
-      tag = Tag.create(name: tag_name) unless tag
-      self.tags << tag
-    end
+  def answer_id_by(user)
+    answers.where(author: user).first.id
   end
 
   after_initialize :set_defaults

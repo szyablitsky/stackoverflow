@@ -4,7 +4,7 @@ li.clearfix
       .mini-counts 0
       p.small = topic.votes_label
     .answers class=topic.answers_class
-      .mini-counts = topic.answers.count
+      .mini-counts = topic.answers_count
       p.small = topic.answers_label
     .views
       .mini-counts = topic.views
@@ -13,7 +13,7 @@ li.clearfix
     h3 = link_to topic.title, question_path(topic)
     .tags = topic.tags_list
     .last-activity
-      => topic.question.author.name
+      => link_to topic.author.name, topic.author
       span title='reputation score'
-        = topic.question.author.reputation
+        = topic.author.reputation
   hr

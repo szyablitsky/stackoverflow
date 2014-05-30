@@ -9,8 +9,18 @@
 
 This is a demo of my skills as a Ruby on Rails developer. 
 
-It is mainly Rails project with light usage of JavaSrcipt and jQuery. Styles by Twitter Bootstrap.
+Some hilights of this projects includes:
 
-All user stories are delivered using BDD and can be seen in Issues.
+1. All user stories are delivered using BDD and can be seen in Issues.
+2. Styles by Twitter Bootstrap.
+3. Posting answers via AJAX with `.js.erb views`.
+4. Posting comments via AJAX with `.json.jbuilder` and Handlebars templates.
+5. Custom RSpec matcher for Rais `delegate`.
+6. Tagging questions via [Select2][1] jQuery plugin.
+7. Database query optimizations via `includes`, `counter_cache`, `connection.select_all`.
+8. File uploads via [carrierwave][2].
 
 by [Sergey Zyablitsky](http://finch.pro)
+
+[1](http://ivaynberg.github.io/select2/)
+[2](https://github.com/carrierwaveuploader/carrierwave)

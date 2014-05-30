@@ -31,8 +31,8 @@ hr
   .col-md-6
     h4 Answers
     ul
-      - @answers.each do |topic|
-        li = link_to topic.title, question_path(topic)
+      - @answers.each do |answer|
+        li = link_to answer['title'], answer_path(answer)
   .col-md-6
     h4 Questions
     ul

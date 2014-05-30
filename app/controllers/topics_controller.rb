@@ -2,11 +2,12 @@ class TopicsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @topics = Topic.all.includes(:question, :answers).decorate
+    @topics = Topic.includes(:tags, question: :author, answers: :author).all.decorate
   end
 
   def show
-    @topic = Topic.includes(:question, :answers).find(params[:id]).decorate
+    include_params = { answers: [:author, :attachments, {comments: :author}] }
+    @topic = Topic.includes(:question, include_params).find(params[:id]).decorate
     @topic.increment_views
     @answer = @topic.answers.build
   end
@@ -18,7 +19,7 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(topic_params)
-    @topic.process_tags(params[:topic][:tags])
+    TaggingService.process params[:topic][:tags], for: @topic
     @topic.question.author = current_user
     if @topic.save
       redirect_to question_path(@topic)

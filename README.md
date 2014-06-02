@@ -9,7 +9,7 @@
 
 This is a demo of my skills as a Ruby on Rails developer. 
 
-Some hilights of this projects includes:
+Some hilights of this project:
 
 1. All user stories are delivered using BDD and can be seen in Issues.
 2. Styles by Twitter Bootstrap.
@@ -19,6 +19,7 @@ Some hilights of this projects includes:
 6. Tagging questions via [Select2][1] jQuery plugin.
 7. Database query optimizations via `includes`, `counter_cache`, `connection.select_all`.
 8. File uploads via [carrierwave][2].
+9. Service classes for multimodel use cases.
 
 by [Sergey Zyablitsky](http://finch.pro)
 

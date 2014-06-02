@@ -22,5 +22,5 @@ Some hilights of this projects includes:
 
 by [Sergey Zyablitsky](http://finch.pro)
 
-[1](http://ivaynberg.github.io/select2/)
-[2](https://github.com/carrierwaveuploader/carrierwave)
+[1]: http://ivaynberg.github.io/select2/
+[2]: https://github.com/carrierwaveuploader/carrierwave

@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
   end
 
   def show
-    include_params = { answers: [:author, :attachments, {comments: :author}] }
+    include_params = { answers: [:author, :attachments, { comments: :author }] }
     @topic = Topic.includes(:question, include_params).find(params[:id]).decorate
     @topic.increment_views
     @answer = @topic.answers.build

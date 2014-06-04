@@ -25,13 +25,18 @@ RSpec::Matchers.define :delegate do |method|
   description do
     "delegate :#{@method} to its #{@to}#{@prefix ? ' with prefix' : ''}"
   end
+
+  def message(negated = false)
+    "expected #{@delegator} #{negated ? 'not ' : ''}to delegate " +
+    ":#{@method} to its #{@to}#{@prefix ? ' with prefix' : ''}"
+  end
  
   failure_message do |text|
-    "expected #{@delegator} to delegate :#{@method} to its #{@to}#{@prefix ? ' with prefix' : ''}"
+    message
   end
  
   failure_message_when_negated do |text|
-    "expected #{@delegator} not to delegate :#{@method} to its #{@to}#{@prefix ? ' with prefix' : ''}"
+    message true
   end
  
   chain(:to) { |receiver| @to = receiver }

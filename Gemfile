@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 gem 'rails', '4.1.1'
+gem "private_pub"
+gem "thin"
 gem 'pg'
 
 gem "slim-rails"
@@ -43,7 +45,7 @@ end
 
 group :development, :test do
   gem 'spring-commands-rspec'
-  gem 'rspec-rails', '~> 3.0.0.rc'
+  gem 'rspec-rails'
   gem 'launchy'
   gem 'factory_girl_rails'
 end

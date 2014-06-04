@@ -1,3 +1,4 @@
+json.message_id @comment.message.id
 json.(@comment, :body)
 
 json.author do

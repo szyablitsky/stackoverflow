@@ -3,13 +3,20 @@ class CommentsController < ApplicationController
   respond_to :json
 
   def create
-    if current_user.reputation >= Privilege.create_comment
-      @message = Message.find(params[:message_id])
-      params_with_author = comment_params.merge(author: current_user)
-      @comment = @message.comments.create(params_with_author)
-      respond_with @comment
+    if current_user.reputation < Privilege.create_comment
+      return head :forbidden
+    end
+
+    @message = Message.find(params[:message_id])
+    params_with_author = comment_params.merge(author: current_user)
+    @comment = @message.comments.build(params_with_author)
+    if @comment.save
+      channel = "/topics/#{@message.topic.id}/comments"
+      data = CommentsService.new(@comment).to_hash
+      PrivatePub.publish_to channel, data
+      render json: data
     else
-      head :forbidden
+      render json: { errors: @comment.errors }, status: :unprocessable_entity
     end
   end
 

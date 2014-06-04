@@ -1,4 +1,4 @@
-li.comment
+li.comment id='comment-{{id}}'
   ' {{body}} &mdash;
   a> href='{{author.url}}' {{author.name}}
   time data-time-ago='{{time.iso}}' datetime='{{time.iso}}' title='{{time.human}}'

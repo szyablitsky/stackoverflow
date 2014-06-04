@@ -6,3 +6,5 @@ script:
   - bundle exec rspec
 before_script:
   - psql -c 'create database so_test;' -U postgres
+  - bundle exec rackup private_pub.ru -s thin -E production &
+  - sleep 3

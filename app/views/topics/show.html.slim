@@ -42,3 +42,6 @@ hr
         td viewed
         td.value = pluralize @topic.views, 'time'
     h4 Related
+
+#topic-id.hidden data-id="#{@topic.id}"
+= subscribe_to "/topics/#{@topic.id}/comments"

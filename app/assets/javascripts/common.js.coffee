@@ -1,1 +1,2 @@
-$('.alert').alert
+$ ->
+  $('.alert').alert

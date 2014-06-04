@@ -19,11 +19,14 @@
 //= require jquery.animate-colors
 //= require rails-timeago
 //= require turbolinks
+//= require private_pub
 //= require bootstrap/transition
 //= require bootstrap/collapse
 //= require bootstrap/alert
 //= require select2
 //= require common
-//= require topics
+//= require topic_tags
+//= require topic_answers
+//= require topic_comments
 //= require handlebars.runtime
 //= require_tree ./templates

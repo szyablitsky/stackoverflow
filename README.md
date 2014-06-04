@@ -13,7 +13,7 @@ Some hilights of this project:
 
 1. All user stories are delivered using BDD and can be seen in Issues.
 2. Styles by Twitter Bootstrap.
-3. Posting answers via AJAX with `.js.erb views`.
+3. Posting answers via AJAX with `.js.erb` views.
 4. Posting comments via AJAX with JSON and Handlebars templates.
 5. Comments propagation via Comet with [private_pub][3] / [faye][4].
 5. Custom RSpec matcher for Rais `delegate`.
@@ -21,6 +21,7 @@ Some hilights of this project:
 7. Database query optimizations via `includes`, `counter_cache`, `connection.select_all`.
 8. File uploads via [carrierwave][2].
 9. Service classes for multimodel use cases and other logic not related directly to model.
+10. Models decoration with [draper][5].
 
 by [Sergey Zyablitsky](http://finch.pro)
 
@@ -28,3 +29,4 @@ by [Sergey Zyablitsky](http://finch.pro)
 [2]: https://github.com/carrierwaveuploader/carrierwave
 [3]: https://github.com/ryanb/private_pub/
 [4]: http://faye.jcoglan.com/
+[5]: https://github.com/drapergem/draper

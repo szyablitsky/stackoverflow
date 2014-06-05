@@ -25,6 +25,7 @@
 //= require bootstrap/alert
 //= require select2
 //= require common
+//= require topics
 //= require topic_tags
 //= require topic_answers
 //= require topic_comments

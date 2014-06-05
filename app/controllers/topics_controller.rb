@@ -26,6 +26,9 @@ class TopicsController < ApplicationController
     TaggingService.process params[:topic][:tags], for: @topic
     @topic.question.author = current_user
     if @topic.save
+      channel = '/topics/new'
+      data = TopicsService.new(@topic).to_hash
+      PrivatePub.publish_to channel, data
       redirect_to question_path(@topic)
     else
       render :new

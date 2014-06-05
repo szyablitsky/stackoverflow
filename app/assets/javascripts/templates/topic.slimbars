@@ -1,0 +1,22 @@
+li.clearfix
+  .counters
+    .votes
+      .mini-counts 0
+      p.small votes
+    .answers class='empty'
+      .mini-counts 0
+      p.small answers
+    .views
+      .mini-counts 1
+      p.small view
+  .summary.clearfix
+    h3: a href='{{path}}'
+      | {{title}}
+    .tags
+      | {{#each tags}}<span class="label label-info">{{this}}</span> {{/each}}
+    .last-activity
+      a> href='{{author.path}}'
+        | {{author.name}}
+      span title='reputation score'
+        | {{author.reputation}}
+  hr

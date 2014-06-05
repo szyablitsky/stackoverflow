@@ -1,8 +1,12 @@
 class TopicsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
+  def home
+    @topics = Topic.for_home_page.decorate
+  end
+
   def index
-    @topics = Topic.includes(:tags, question: :author, answers: :author).all.decorate
+    @topics = Topic.includes(:tags, question: :author).all.decorate
   end
 
   def show

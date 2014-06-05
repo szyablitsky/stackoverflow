@@ -1,0 +1,10 @@
+h1 Latest questions
+hr
+.row
+  .col-md-9
+    ul#questions = render @topics
+  .col-md-3
+p.lead
+  ' Looking for more? Browse the
+  = link_to 'complete list of questions', questions_path
+  ' , or <i>popular tags</i>. Help us answer <i>unanswered questions</i>.

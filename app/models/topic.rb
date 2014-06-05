@@ -14,9 +14,8 @@ class Topic < ActiveRecord::Base
   delegate :author, to: :question
   # delegate :created_at, to: :question
 
-  def increment_views
-    self.views += 1
-    self.save!
+  def self.for_home_page
+    includes(:tags, question: :author).order(created_at: :desc).limit(20)
   end
 
   def self.with_questions_by(user)
@@ -50,6 +49,11 @@ class Topic < ActiveRecord::Base
 
   def answer_id_by(user)
     answers.where(author: user).first.id
+  end
+
+  def increment_views
+    self.views += 1
+    self.save!
   end
 
   after_initialize :set_defaults

@@ -15,5 +15,5 @@ Rails.application.routes.draw do
 
   resources :tags, only: [:index]
 
-  root 'topics#index'
+  root 'topics#home'
 end

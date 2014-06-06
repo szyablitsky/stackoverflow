@@ -1,4 +1,4 @@
-class CommentsService
+class CommentsSerializer
   delegate :url_helpers, to: 'Rails.application.routes'
 
   def initialize(comment)

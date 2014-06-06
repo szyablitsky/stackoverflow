@@ -37,7 +37,7 @@ hr
     table.question-info
       tr
         td asked
-        td.value = timeago_tag @topic.question.created_at
+        td.value = timeago_tag @topic.created_at
       tr
         td viewed
         td.value = pluralize @topic.views, 'time'

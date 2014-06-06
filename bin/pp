@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+bundle exec rackup private_pub.ru -s thin -E production

@@ -11,8 +11,7 @@ class Topic < ActiveRecord::Base
 
   accepts_nested_attributes_for :question
 
-  delegate :author, to: :question
-  # delegate :created_at, to: :question
+  delegate :author, :author=, to: :question
 
   def self.for_home_page
     includes(:tags, question: :author).order(created_at: :desc).limit(20)

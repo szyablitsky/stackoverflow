@@ -1,4 +1,4 @@
-= bootstrap_nested_form_for @topic, url: questions_path(@topic) do |f|
+= bootstrap_nested_form_for @topic, url: questions_path do |f|
   = f.text_field :title
   = f.fields_for :question do |q|
     = q.text_area :body, hide_label: :true

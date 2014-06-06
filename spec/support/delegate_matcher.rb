@@ -11,6 +11,7 @@
 RSpec::Matchers.define :delegate do |method|
   match do |delegator|
     @method = @prefix ? :"#{@to}_#{method}" : method
+    param = @method =~ /=^/ ? 1 : nil
     @delegator = delegator
     begin
       @delegator.send(@to)
@@ -18,8 +19,8 @@ RSpec::Matchers.define :delegate do |method|
       raise "#{@delegator} does not respond to #{@to}!" 
     end
     allow(@delegator).to receive(@to).and_return double('receiver')
-    allow(@delegator.send(@to)).to receive(method).and_return :called
-    @delegator.send(@method) == :called
+    allow(@delegator.send(@to)).to receive(method).with(param).and_return :called
+    @delegator.send(@method, param) == param || :called
   end
  
   description do

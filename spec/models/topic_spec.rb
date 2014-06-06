@@ -20,8 +20,8 @@ describe Topic, type: :model do
   end
 
   it { is_expected.to delegate(:author).to(:question) }
-  # it { is_expected.to delegate(:created_at).to(:question) }
-
+  it { is_expected.to delegate(:author=).to(:question) }
+  
   describe '#increment_views' do
     let!(:topic) { create(:topic) }
 

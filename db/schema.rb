@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 20140601235302) do
     t.datetime "updated_at"
     t.boolean  "answer"
     t.integer  "author_id"
-    t.integer  "attachments_count", default: 0, null: false
-    t.integer  "comments_count",    default: 0, null: false
+    t.integer  "attachments_count", default: 0
+    t.integer  "comments_count",    default: 0
   end
 
   add_index "messages", ["author_id"], name: "index_messages_on_author_id", using: :btree

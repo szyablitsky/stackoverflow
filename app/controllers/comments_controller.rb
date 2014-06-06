@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     @comment = @message.comments.build(params_with_author)
     if @comment.save
       channel = "/topics/#{@message.topic.id}/comments"
-      data = CommentsService.new(@comment).to_hash
+      data = CommentsSerializer.new(@comment).to_hash
       PrivatePub.publish_to channel, data
       render json: data
     else

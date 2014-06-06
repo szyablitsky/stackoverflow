@@ -1,4 +1,4 @@
-class TopicsService
+class TopicsSerializer
   delegate :url_helpers, to: 'Rails.application.routes'
 
   def initialize(topic)

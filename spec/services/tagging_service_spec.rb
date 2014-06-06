@@ -2,9 +2,10 @@ require 'spec_helper'
 
 describe TaggingService do
   describe '.process' do
-    let(:topic) { build(:topic) }
+    let(:tag_to_delete) { create(:tag, name: 'tag3') }
+    let!(:topic) { build(:topic, tags: [tag_to_delete]) }
     let(:tags_string) { 'tag1,tag2' }
-    let!(:tag1) { create(:tag, name: 'tag1') }
+    let!(:existing_tag) { create(:tag, name: 'tag1') }
 
     def process_tags
       TaggingService.process tags_string, for: topic
@@ -12,7 +13,7 @@ describe TaggingService do
 
     it 'should add existing tag to topic' do
       process_tags
-      expect(topic.tags).to include(tag1)
+      expect(topic.tags).to include(existing_tag)
     end
 
     it 'should create new tag' do
@@ -22,6 +23,11 @@ describe TaggingService do
     it 'should add new tag to topic' do
       process_tags
       expect(topic.tags.map(&:name)).to include('tag2')
+    end
+
+    it 'should remove unspecified tag from topic' do
+      process_tags
+      expect(topic.tags.map(&:name)).to_not include('tag3')
     end
   end
 end

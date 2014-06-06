@@ -41,6 +41,7 @@ group :development do
   gem 'meta_request'
   gem 'rb-readline'
   gem 'forgery'
+  gem 'bullet'
 end
 
 group :development, :test do

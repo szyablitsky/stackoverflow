@@ -13,13 +13,11 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user.id.to_s == params[:id]
-      @user = User.find(params[:id])
-      @user.update(user_params)
-      respond_with @user
-    else
-      head :forbidden
-    end
+    return head :forbidden unless current_user.id.to_s == params[:id]
+
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    respond_with @user
   end
 
   private

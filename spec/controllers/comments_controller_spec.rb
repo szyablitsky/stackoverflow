@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CommentsController do
+describe CommentsController, type: :controller do
   describe 'POST #create' do
     let!(:message) { create(:message) }
     let(:comment) { attributes_for(:comment) }

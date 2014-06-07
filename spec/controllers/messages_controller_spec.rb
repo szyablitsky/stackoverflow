@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MessagesController do
+describe MessagesController, type: :controller do
   describe 'POST #create' do
     let!(:topic) { create(:topic) }
     let(:answer) { attributes_for(:answer) }

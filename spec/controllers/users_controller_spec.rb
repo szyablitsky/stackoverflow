@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UsersController do
+describe UsersController, type: :controller do
   let(:user1) { create(:user) }
   let(:user2) { create(:user) }
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TopicsController do
+describe TopicsController, type: :controller do
   describe 'GET #index' do
     let(:topics) { create_list(:topic, 2) }
     before(:each) { get :index }

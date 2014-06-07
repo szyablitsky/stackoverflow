@@ -8,6 +8,7 @@ class MessagesController < ApplicationController
     else
       params_with_author = answer_params.merge(author: current_user)
       @answer = @topic.answers.create(params_with_author)
+      @topic.reload
     end
   end
 

@@ -1,1 +1,1 @@
-json.array! @tags.map { |t| t.name }
+json.array! @tags.map(&:name)

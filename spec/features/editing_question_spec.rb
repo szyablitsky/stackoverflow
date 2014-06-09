@@ -8,7 +8,7 @@ feature 'Editing question', 'Signed in user can edit his question' do
 
     background { topic.update_attribute :author, user }
 
-    context 'and seeing his own answer' do
+    context 'and seeing his own question' do
       background { login user }
 
       def edit_question
@@ -28,7 +28,7 @@ feature 'Editing question', 'Signed in user can edit his question' do
       end
     end
 
-    context "and seeing other user's answer" do
+    context "and seeing other user's question" do
       given(:other_user) { create :user }
 
       background { login other_user }

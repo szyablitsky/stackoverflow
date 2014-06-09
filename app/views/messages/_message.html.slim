@@ -13,7 +13,7 @@ table.fw id="message-#{message.id}"
         .tags
           = message.tags_list
       - if user_signed_in? && message.author == current_user
-        = link_to 'edit', edit_question_path(message.topic)
+        = message.link_to_edit
       table.user-info
         tr: td colspan='2'
           => message.answer ? 'answered' : 'asked'

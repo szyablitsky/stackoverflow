@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :questions, controller: 'topics', except: [:destroy] do
-    resources :answers, controller: 'messages', only: [:create]
+    resources :answers, controller: 'messages',
+              only: [:create, :edit, :update]
   end
 
   resources :messages, only: [] do

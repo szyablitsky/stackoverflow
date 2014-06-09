@@ -19,7 +19,7 @@ describe MessagesController, type: :controller do
 
       it 'creates answer linked to logged in user' do
         create_answer
-        expect(assigns(:answer).author).to eq(user)
+        expect(topic.answers.first.author).to eq(user)
       end
 
       context 'when already answered by this user' do

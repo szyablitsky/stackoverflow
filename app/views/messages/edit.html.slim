@@ -1,0 +1,22 @@
+h1 = parent.title
+hr
+.row
+  .col-md-9
+    .question = render parent.question
+
+    hr
+    = bootstrap_nested_form_for resource,
+      url: question_answer_path(parent, resource) do |f|
+      = f.text_area :body, label: 'Your answer'
+      = f.primary 'Save changes'
+      =< link_to 'Cancel', question_path(parent), class: 'btn btn-default'
+
+  .col-md-3
+    table.question-info
+      tr
+        td asked
+        td.value = timeago_tag parent.created_at
+      tr
+        td viewed
+        td.value = pluralize parent.views, 'time'
+    h4 Related

@@ -8,7 +8,6 @@ describe TopicDecorator do
   end
 
   def create_answer
-    subject.create_question attributes_for(:question)
     subject.answers.create attributes_for(:answer)
     subject.reload
   end

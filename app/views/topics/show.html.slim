@@ -15,8 +15,7 @@ hr
         = render 'answered', topic: @topic
       - else
         = bootstrap_nested_form_for @answer,
-          url: question_answers_path(@topic), remote: true,
-          data: { disable_with: 'Submitting...' } do |f|
+          url: question_answers_path(@topic), remote: true do |f|
           = f.text_area :body, label: 'Your answer'
           = f.fields_for :attachments do |a|
             = a.file_field :file, hide_label: true
@@ -24,7 +23,7 @@ hr
               = a.link_to_remove 'delete'
           = f.form_group
             = f.link_to_add "add file", :attachments
-          = f.submit 'Post your answer', class: 'btn btn-primary'
+          = f.primary 'Post your answer', data: { disable_with: 'Submitting...' }
     - else
       p
         ' You should

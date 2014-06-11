@@ -28,7 +28,7 @@ $ ->
       else
         alert.effect('bounce')
     else
-      messageId = $(this).attr('data-message-id')
+      messageId = $(this).data('messageId')
       $('.add-comment').show() # all other links
       $form = $('#new_comment').detach()
       cleanup($form)

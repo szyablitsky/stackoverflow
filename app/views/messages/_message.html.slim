@@ -2,18 +2,19 @@
 table.fw id="message-#{message.id}"
   tr
     td.votecell rowspan="2"
-      .vote
+      .vote.text-center
+      - if message.accepted
+        .text-success.text-center
+          span.glyphicon.glyphicon-ok title='accepted'
     td.postcell
-      p = simple_format(message.body)
+      = simple_format(message.body)
       - if message.has_attachments?
-        p
-          strong> Attachments:
+        p: strong
+          ' Attachments:
           = message.attachments_list
       - unless message.answer
-        .tags
-          = message.tags_list
-      - if user_signed_in? && message.author == current_user
-        = message.link_to_edit
+        p.tags
+          = message.topic.decorate.tags_list
       table.user-info
         tr: td colspan='2'
           => message.answer ? 'answered' : 'asked'
@@ -27,6 +28,17 @@ table.fw id="message-#{message.id}"
             br
             span.reputation-score title='reputation score'
               = message.author.reputation
+      - if user_signed_in?
+        p
+          - if message.answer && message.topic.answer_can_be_accepted_by?(current_user)
+            - accept_link = true
+            = link_to 'accept', 'javascript:void(0)',
+              class: 'accept-answer-link',
+              data: { question_id: message.topic.id, answer_id: message.id }
+          - if message.author == current_user
+            - if accept_link
+              ' &nbsp;|
+            = message.link_to_edit
   tr
     td.comments
       ul.comments-list
@@ -40,6 +52,5 @@ table.fw id="message-#{message.id}"
             url: message_comments_path(message), remote: true,
             data: { type: :json }, html: { style: 'display: none;' } do |f|
             = f.text_area :body, label: 'Your comment'
-            => f.submit 'Post your comment', class: 'btn btn-primary',
-              data: { disable_with: 'Submitting...' }
+            => f.primary 'Post your comment', data: { disable_with: 'Submitting...' }
             = f.button 'Cancel', class: 'btn btn-default cancel-comment'

@@ -1,0 +1,7 @@
+.accept-answer
+  p.bg-success
+    | Do you really want to accept this answer? This action can't be undone.
+  a.btn.btn-success> [data-method='post' data-remote='true' rel='nofollow'
+    href="/questions/{{questionId}}/answers/{{answerId}}/accept"]
+    | Accept this answer
+  button.btn.btn-default.cancel-accept-answer Cancel

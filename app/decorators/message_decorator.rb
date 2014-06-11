@@ -10,14 +10,6 @@ class MessageDecorator < Draper::Decorator
     attachments_array.join(', ').html_safe
   end
 
-  def tags_list
-    tags_array = topic.tags.to_a
-    tags_array.map! do |tag|
-      "<span class=\"label label-info\">#{tag.name}</span>"
-    end
-    tags_array.join(' ').html_safe
-  end
-
   def link_to_edit
     path = answer? ?
            url_helpers.edit_question_answer_path(topic,object) :

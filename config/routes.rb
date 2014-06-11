@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   resources :questions, controller: 'topics', except: [:destroy] do
     resources :answers, controller: 'messages',
-              only: [:create, :edit, :update]
+              only: [:create, :edit, :update] do
+      post :accept, on: :member
+    end
   end
 
   resources :messages, only: [] do

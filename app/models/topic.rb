@@ -4,7 +4,8 @@ class Topic < ActiveRecord::Base
 
   has_many :messages
   has_one :question, -> { where(answer: false) }, class_name: 'Message'
-  has_many :answers, -> { where(answer: true) }, class_name: 'Message'
+  has_many :answers, -> { where(answer: true).order(accepted: :desc, updated_at: :desc) },
+           class_name: 'Message'
 
   has_many :topic_tags
   has_many :tags, through: :topic_tags
@@ -18,7 +19,8 @@ class Topic < ActiveRecord::Base
   end
 
   def self.with_questions_by(user)
-    joins(:question).where messages: { author_id: user }
+    joins(:question).where(messages: { author_id: user })
+      .order(updated_at: :desc).limit(10)
   end
 
   def self.with_answers_by(user)
@@ -27,7 +29,9 @@ class Topic < ActiveRecord::Base
       from messages m, topics t
       where t.id = m.topic_id
         and m.answer = 't'
-        and m.author_id = #{user.id})
+        and m.author_id = #{user.id}
+      order by m.updated_at desc
+      limit 10)
   end
 
   def answers_count
@@ -36,6 +40,14 @@ class Topic < ActiveRecord::Base
 
   def has_answers?
     answers_count > 0
+  end
+
+  def has_accepted_answer?
+    answers.select { |a| a.accepted }.size > 0
+  end
+
+  def answer_can_be_accepted_by?(user)
+    author == user && !has_accepted_answer?
   end
 
   def answered_by?(user)

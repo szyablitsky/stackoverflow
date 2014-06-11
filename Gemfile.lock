@@ -144,7 +144,7 @@ GEM
     inherited_resources (1.5.0)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0)
-    jbuilder (2.0.8)
+    jbuilder (2.1.0)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (3.1.0)

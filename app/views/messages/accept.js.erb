@@ -1,0 +1,5 @@
+$('#answers').html('<%= j render "topics/answers", answers: parent.answers.reload,
+                                 answers_count: parent.answers_count %>');
+$('#message-<%= resource.id %>')
+  .animate({backgroundColor:'lightblue'}, 300)
+  .animate({backgroundColor:'white'}, 1700);

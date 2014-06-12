@@ -1,5 +1,6 @@
-class TopicsController < ApplicationController
+class TopicsController < InheritedResources::Base
   before_action :authenticate_user!, except: [:home, :index, :show]
+  actions :all, except: :destroy
 
   def home
     @topics = Topic.for_home_page.decorate
@@ -17,8 +18,7 @@ class TopicsController < ApplicationController
   end
 
   def new
-    @topic = Topic.new
-    @topic.build_question
+    build_resource.build_question
   end
 
   def create
@@ -26,19 +26,15 @@ class TopicsController < ApplicationController
     TaggingService.process params[:topic][:tags], for: @topic
     @topic.question.author = current_user
 
-    if @topic.save
-      channel = '/topics/new'
-      data = TopicsSerializer.new(@topic).to_hash
-      PrivatePub.publish_to channel, data
+    create! do |success, failure|
+      success.html do
+        channel = '/topics/new'
+        data = TopicsSerializer.new(@topic).to_hash
+        PrivatePub.publish_to channel, data
 
-      redirect_to question_path(@topic)
-    else
-      render :new
+        redirect_to question_path(@topic)
+      end
     end
-  end
-
-  def edit
-    @topic = Topic.find(params[:id])
   end
 
   def update
@@ -46,11 +42,11 @@ class TopicsController < ApplicationController
 
     return head :forbidden unless @topic.author == current_user
 
-    if @topic.update(topic_params)
-      TaggingService.process params[:topic][:tags], for: @topic
-      redirect_to question_path(@topic)
-    else
-      render :edit
+    update! do |success, failure|
+      success.html do
+        TaggingService.process params[:topic][:tags], for: @topic
+        redirect_to question_path(@topic)
+      end
     end
   end
 

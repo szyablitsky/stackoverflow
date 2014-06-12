@@ -4,9 +4,6 @@ describe UsersController, type: :controller do
   let(:user1) { create(:user) }
   let(:user2) { create(:user) }
 
-  describe 'GET #show' do
-  end
-
   describe 'PATCH #update' do
     def update(user)
       patch :update, id: user, user: { name: 'test' }

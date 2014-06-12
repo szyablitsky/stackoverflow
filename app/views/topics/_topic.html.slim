@@ -1,19 +1,20 @@
-li.clearfix
-  .counters
-    .votes
-      .mini-counts 0
-      p.small = topic.votes_label
-    .answers class=topic.answers_class
-      .mini-counts = topic.answers_count
-      p.small = topic.answers_label
-    .views
-      .mini-counts = topic.views
-      p.small = topic.views_label
-  .summary.clearfix
-    h3 = link_to topic.title, question_path(topic)
-    .tags = topic.tags_list
-    .last-activity
-      => link_to topic.author.name, topic.author
-      span title='reputation score'
-        = topic.author.reputation
+li
+  .row
+    .col-md-4.col-lg-3.counters
+      .votes
+        .mini-counts 0
+        p.small = topic.votes_label
+      .answers class=topic.answers_class
+        .mini-counts = topic.answers_count
+        p.small = topic.answers_label
+      .views
+        .mini-counts = topic.views
+        p.small = topic.views_label
+    .col-md-8.col-lg-9.summary
+      h3 = link_to topic.title, question_path(topic)
+      .last-activity
+        => link_to topic.author.name, topic.author
+        span title='reputation score'
+          = topic.author.reputation
+      p.tags = topic.tags_list
   hr

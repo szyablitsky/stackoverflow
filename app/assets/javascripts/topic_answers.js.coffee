@@ -15,8 +15,7 @@ $ ->
       answerId: $link.data 'answerId'
     acceptHtml = JST['accept'](data)
     $link.parent().after acceptHtml
-    $('.accept-answer').show()
-    # $('.accept-answer').slideDown()
+    $('.accept-answer').slideDown()
 
   .on 'click', '.cancel-accept-answer', (e) -> cleanup()
 

@@ -21,6 +21,12 @@
 
 en:
   flash:
+    topics:
+      update:
+        notice: 'Your question was successfully updated.'
     messages:
       update:
         notice: 'Your answer was successfully updated.'
+    users:
+      update:
+        notice: 'Your profile was successfully updated.'

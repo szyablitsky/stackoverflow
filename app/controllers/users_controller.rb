@@ -1,6 +1,6 @@
-class UsersController < ApplicationController
+class UsersController < InheritedResources::Base
   before_action :authenticate_user!, except: [:show]
-  respond_to :html, only: [:update]
+  actions :show, :edit, :update
 
   def show
     @user = User.find(params[:id])
@@ -8,16 +8,9 @@ class UsersController < ApplicationController
     @answers = Topic.with_answers_by @user
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
-
   def update
     return head :forbidden unless current_user.id.to_s == params[:id]
-
-    @user = User.find(params[:id])
-    @user.update(user_params)
-    respond_with @user
+    update!
   end
 
   private

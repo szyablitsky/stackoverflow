@@ -8,3 +8,5 @@ before_script:
   - psql -c 'create database so_test;' -U postgres
   - bundle exec rackup private_pub.ru -s thin -E production &
   - sleep 3
+notifications:
+  slack: finch:lpxpXjEVaVLNsYQe7D8ymtqZ

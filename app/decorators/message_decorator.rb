@@ -12,7 +12,7 @@ class MessageDecorator < Draper::Decorator
 
   def link_to_edit
     path = answer? ?
-           url_helpers.edit_question_answer_path(topic,object) :
+           url_helpers.edit_question_answer_path(topic, object) :
            url_helpers.edit_question_path(topic)
     %Q(<a href="#{path}">edit</a>).html_safe
   end

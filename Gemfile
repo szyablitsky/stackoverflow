@@ -34,6 +34,8 @@ gem 'nested_form'
 gem 'nav_lynx'
 gem 'gravatar_image_tag'
 
+gem 'rails_12factor', group: :production
+
 group :development do
   gem 'brakeman'
   gem 'quiet_assets'

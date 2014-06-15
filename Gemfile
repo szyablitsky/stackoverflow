@@ -25,6 +25,7 @@ gem 'rails-timeago'
 gem 'select2-rails'
 
 gem 'devise'
+gem 'omniauth-github'
 gem 'omniauth-facebook'
 gem 'draper'
 gem 'carrierwave'

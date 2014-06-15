@@ -23,7 +23,7 @@ Some hilights of this project:
 9. Service classes for multi-model use cases and other not related directly to model logic.
 10. Models decoration with [draper][5].
 11. Light controllers with [inherited_resources][6].
-12. OAuth 2.0 authentication with Facebook.
+12. OAuth 2 authentication with Facebook and GitHub.
 
 by [Sergey Zyablitsky](http://finch.pro)
 

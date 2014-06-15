@@ -4,6 +4,8 @@ require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
 
 RSpec.configure do |config|
+  OmniAuth.config.test_mode = true
+  
   config.include FeatureMacros, type: :feature
 
   config.use_transactional_fixtures = false

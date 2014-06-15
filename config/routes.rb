@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :questions, controller: 'topics', except: [:destroy] do
     resources :answers, controller: 'messages',

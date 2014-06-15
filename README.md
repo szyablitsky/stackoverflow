@@ -7,7 +7,7 @@
 [![Dependency Status](https://gemnasium.com/szyablitsky/stackoverflow.svg)](https://gemnasium.com/szyablitsky/stackoverflow)
 [![Stories in Ready](https://badge.waffle.io/szyablitsky/stackoverflow.png?label=ready&title=Ready)](https://waffle.io/szyablitsky/stackoverflow)
 
-This is a demo of my skills as a Ruby on Rails developer.
+This is a demo of my skills as a Ruby on Rails developer. This app can be viewed in action at http://so-clone.herokuapp.com/
 
 Some hilights of this project:
 
@@ -23,6 +23,7 @@ Some hilights of this project:
 9. Service classes for multi-model use cases and other not related directly to model logic.
 10. Models decoration with [draper][5].
 11. Light controllers with [inherited_resources][6].
+12. OAuth 2.0 authentication with Facebook.
 
 by [Sergey Zyablitsky](http://finch.pro)
 

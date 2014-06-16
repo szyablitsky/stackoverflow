@@ -56,7 +56,7 @@ RSpec.describe User, type: :model do
       user.save!
     end
 
-    it { expect(user.authorizations.first.provider).to eq 'facebook'}
-    it { expect(user.authorizations.first.uid).to eq 'user_uid'}
+    it { expect(user.authorizations.first.provider).to eq 'facebook' }
+    it { expect(user.authorizations.first.uid).to eq 'user_uid' }
   end
 end

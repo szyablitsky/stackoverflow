@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
   has_many :authorizations, dependent: :destroy
   has_many :messages, foreign_key: 'author_id', inverse_of: :author
   has_many :comments, foreign_key: 'author_id', inverse_of: :author
+  has_many :received_reputation_changes, class_name: 'ReputationChange',
+           foreign_key: 'receiver_id', inverse_of: :receiver 
+  has_many :committed_reputation_changes, class_name: 'ReputationChange',
+           foreign_key: 'committer_id', inverse_of: :committer 
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 

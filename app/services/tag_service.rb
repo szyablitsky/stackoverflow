@@ -1,4 +1,4 @@
-class TaggingService
+class TagService
   def self.process(tags_string, options)
     return unless tags_string
 

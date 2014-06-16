@@ -3,6 +3,7 @@ class Message < ActiveRecord::Base
   belongs_to :author, class_name: 'User', inverse_of: :messages
   has_many :comments, inverse_of: :message
   has_many :attachments, inverse_of: :message
+  has_many :reputation_changes
 
   accepts_nested_attributes_for :attachments, reject_if: :all_blank
 

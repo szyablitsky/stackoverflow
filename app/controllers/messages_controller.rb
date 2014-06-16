@@ -24,6 +24,7 @@ class MessagesController < InheritedResources::Base
     return head :method_not_allowed if parent.has_accepted_answer?
 
     resource.update_attribute :accepted, true
+    ReputationService.process :accept, resource, current_user
   end
 
   protected

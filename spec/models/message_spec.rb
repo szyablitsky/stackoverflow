@@ -5,6 +5,7 @@ describe Message do
   it { is_expected.to belong_to(:topic).counter_cache(true) }
   it { is_expected.to have_many :comments }
   it { is_expected.to have_many :attachments }
+  it { is_expected.to have_many :reputation_changes }
 
   it { is_expected.to accept_nested_attributes_for :attachments }
 

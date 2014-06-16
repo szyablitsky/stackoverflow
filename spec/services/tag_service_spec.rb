@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TaggingService do
+describe TagService do
   describe '.process' do
     let(:tag_to_delete) { create(:tag, name: 'tag3') }
     let!(:topic) { build(:topic, tags: [tag_to_delete]) }
@@ -8,7 +8,7 @@ describe TaggingService do
     let!(:existing_tag) { create(:tag, name: 'tag1') }
 
     def process_tags
-      TaggingService.process tags_string, for: topic
+      TagService.process tags_string, for: topic
     end
 
     it 'should add existing tag to topic' do

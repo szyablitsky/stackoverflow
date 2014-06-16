@@ -23,7 +23,7 @@ class TopicsController < InheritedResources::Base
 
   def create
     @topic = Topic.new(topic_params)
-    TaggingService.process params[:topic][:tags], for: @topic
+    TagService.process params[:topic][:tags], for: @topic
     @topic.question.author = current_user
 
     create! do |success, failure|
@@ -44,7 +44,7 @@ class TopicsController < InheritedResources::Base
 
     update! do |success, failure|
       success.html do
-        TaggingService.process params[:topic][:tags], for: @topic
+        TagService.process params[:topic][:tags], for: @topic
         redirect_to question_path(@topic)
       end
     end

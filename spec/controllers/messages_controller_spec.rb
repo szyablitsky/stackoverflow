@@ -64,6 +64,12 @@ describe MessagesController, type: :controller do
           expect(answer.accepted).to eq true
         end
 
+        it 'processes reputation change' do
+          expect(ReputationService).to receive(:process)
+            .with(:accept, answer, user)
+          accept_answer
+        end
+
         context 'and topic already have accepted answer' do
           before { create(:answer, topic: topic, accepted: true) }
 

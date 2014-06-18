@@ -13,6 +13,8 @@ class MessagesController < InheritedResources::Base
       resource.author = current_user
       resource.answer = true
       create! do |format|
+        @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
+                                            autolink: true, tables: true)
         parent.reload
         format.js
       end

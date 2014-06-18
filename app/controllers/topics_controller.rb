@@ -15,6 +15,8 @@ class TopicsController < InheritedResources::Base
     @topic = Topic.includes(:question, include_params).find(params[:id]).decorate
     @topic.increment_views
     @answer = @topic.answers.build
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
+                                        autolink: true, tables: true)
   end
 
   def new

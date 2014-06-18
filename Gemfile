@@ -3,11 +3,12 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 gem 'rails', '4.1.1'
-gem "private_pub"
-gem "thin"
+gem 'private_pub'
+gem 'thin'
 gem 'pg'
 
-gem "slim-rails"
+gem 'slim-rails'
+gem 'redcarpet'
 gem 'jbuilder'
 
 gem 'sass-rails', '~> 4.0.3'

@@ -3,4 +3,4 @@ ul
   - answers.each do |answer|
     - if answer.persisted?
       hr
-      li = render answer
+      li = render answer, markdown: markdown

@@ -33,8 +33,16 @@ hr
     ul
       - @answers.each do |answer|
         li = link_to answer['title'], answer_path(answer)
-  .col-md-6
     h4 Questions
     ul
       - @questions.each do |topic|
         li = link_to topic.title, question_path(topic)
+  .col-md-6
+    h4 Reputation
+    table.reputation
+      - @reputation_changes.each do |change|
+        - change = ReputationChangeDecorator.new change
+        tr
+          td: span class="#{change.amount_class}" = change.amount_value
+          td: span = timeago_tag change.time
+          td: span = link_to change.title, question_path(change.id)

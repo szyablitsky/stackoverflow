@@ -9,10 +9,12 @@ class Privilege
   end
 
   def self.method_missing(symbol)
-    PRIVILEGES.key?(symbol) ? PRIVILEGES[symbol] : 1_000_000_000
+    return PRIVILEGES[symbol] if PRIVILEGES.key? symbol
+    super
   end
 
   def self.respond_to?(symbol)
-    PRIVILEGES.key?(symbol)
+    return true if PRIVILEGES.key?(symbol)
+    super
   end
 end

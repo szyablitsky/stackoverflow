@@ -6,6 +6,7 @@ class UsersController < InheritedResources::Base
     @user = User.find(params[:id])
     @questions = Topic.with_questions_by @user
     @answers = Topic.with_answers_by @user
+    @reputation_changes = ReputationChange.received_by @user
   end
 
   def update

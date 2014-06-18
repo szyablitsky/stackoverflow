@@ -27,6 +27,8 @@ class ReputationService
       change.receiver = receiver
       change.committer = committer
     end
+    receiver.reputation += amount
+    receiver.save!
   end
 
   private_class_method :accept, :upvote, :downvote

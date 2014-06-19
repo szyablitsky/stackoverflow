@@ -15,15 +15,16 @@ Some hilights of this project:
 2. Styles by Twitter Bootstrap.
 3. Posting answers via AJAX with `.js.erb` views.
 4. Posting comments via AJAX and JSON with jQuery handlers and Handlebars templates.
-5. Comments propagation via Comet with [private_pub][3] / [faye][4].
+5. Comments propagation via Comet with [Private Pub][3] / [Faye][4].
 5. Custom RSpec matcher for Rais `delegate`.
 6. Tagging questions via [Select2][1] jQuery plugin.
 7. Database query optimizations via `includes`, `counter_cache`, `connection.select_all`.
-8. File uploads via [carrierwave][2].
+8. File uploads via [CarrierWave][2].
 9. Service classes for multi-model use cases and other not related directly to model logic.
-10. Models decoration with [draper][5].
-11. Light controllers with [inherited_resources][6].
+10. Models decoration with [Draper][5].
+11. Light controllers with [Inherited Resources][6].
 12. OAuth 2 authentication with Facebook and GitHub.
+13. [Redcarpet][7] for markdown render.
 
 by [Sergey Zyablitsky](http://finch.pro)
 
@@ -33,3 +34,4 @@ by [Sergey Zyablitsky](http://finch.pro)
 [4]: http://faye.jcoglan.com/
 [5]: https://github.com/drapergem/draper
 [6]: https://github.com/josevalim/inherited_resources
+[7]: https://github.com/vmg/redcarpet

@@ -7,9 +7,9 @@ class User < ActiveRecord::Base
   has_many :messages, foreign_key: 'author_id', inverse_of: :author
   has_many :comments, foreign_key: 'author_id', inverse_of: :author
   has_many :received_reputation_changes, class_name: 'ReputationChange',
-           foreign_key: 'receiver_id', inverse_of: :receiver 
+           foreign_key: 'receiver_id', inverse_of: :receiver
   has_many :committed_reputation_changes, class_name: 'ReputationChange',
-           foreign_key: 'committer_id', inverse_of: :committer 
+           foreign_key: 'committer_id', inverse_of: :committer
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 
@@ -24,15 +24,19 @@ class User < ActiveRecord::Base
     if user
       user.authorizations.create! auth_small
     else
-      user = User.new do |u|
-               u.provider = auth.provider
-               u.uid = auth.uid
-               u.name = auth.info.name
-               u.email = auth.info.email
-               u.password = Devise.friendly_token[0, 20]
-             end
+      user = User.new_for_oauth(auth)
     end
     user
+  end
+
+  def self.new_for_oauth(auth)
+    User.new do |u|
+      u.provider = auth.provider
+      u.uid = auth.uid
+      u.name = auth.info.name
+      u.email = auth.info.email
+      u.password = Devise.friendly_token[0, 20]
+    end
   end
 
   def self.new_with_session(params, session)

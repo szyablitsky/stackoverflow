@@ -7,7 +7,6 @@ table.fw id="message-#{message.id}"
         .text-success.text-center
           span.glyphicon.glyphicon-ok title='accepted'
     td.postcell
-      / = markdown.render(h message.body).html_safe
       = markdown(message.body)
       - if message.has_attachments?
         p: strong

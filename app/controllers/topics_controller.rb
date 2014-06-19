@@ -1,6 +1,5 @@
 class TopicsController < InheritedResources::Base
   before_action :authenticate_user!, except: [:home, :index, :show]
-  # before_action :setup_markdown, only: [:show, :edit]
   actions :all, except: :destroy
 
   def home

@@ -44,5 +44,6 @@ hr
         - change = ReputationChangeDecorator.new change
         tr
           td: span class="#{change.amount_class}" = change.amount_value
-          td: span = timeago_tag change.time
+          td: span.time = timeago_tag change.time
+          td: span = change.type_string
           td: span = link_to change.title, question_path(change.id)

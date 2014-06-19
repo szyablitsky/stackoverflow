@@ -1,5 +1,6 @@
 class TopicsController < InheritedResources::Base
   before_action :authenticate_user!, except: [:home, :index, :show]
+  before_action :setup_markdown, only: [:show, :edit]
   actions :all, except: :destroy
 
   def home
@@ -15,8 +16,6 @@ class TopicsController < InheritedResources::Base
     @topic = Topic.includes(:question, include_params).find(params[:id]).decorate
     @topic.increment_views
     @answer = @topic.answers.build
-    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
-                                        autolink: true, tables: true)
   end
 
   def new

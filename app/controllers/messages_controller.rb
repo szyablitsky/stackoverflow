@@ -13,8 +13,7 @@ class MessagesController < InheritedResources::Base
       resource.author = current_user
       resource.answer = true
       create! do |format|
-        @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
-                                            autolink: true, tables: true)
+        setup_markdown
         parent.reload
         format.js
       end
@@ -27,6 +26,7 @@ class MessagesController < InheritedResources::Base
 
     resource.update_attribute :accepted, true
     ReputationService.process :accept, resource, current_user
+    setup_markdown
   end
 
   protected

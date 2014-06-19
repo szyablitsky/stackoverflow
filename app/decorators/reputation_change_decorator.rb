@@ -18,6 +18,12 @@ class ReputationChangeDecorator
     created_at.to_time
   end
 
+  TYPE_STRING = { '0' => 'accept', '1' => 'upvote', '2' => 'downvote' }
+
+  def type_string
+    TYPE_STRING[type]
+  end
+
   def method_missing(symbol)
     key = symbol.to_s
     return @change[key] if @change.key? key

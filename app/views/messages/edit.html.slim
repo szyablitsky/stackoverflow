@@ -2,7 +2,7 @@ h1 = parent.title
 hr
 .row
   .col-md-9
-    .question = render parent.question
+    .question = render parent.question, markdown: @markdown
 
     hr
     = bootstrap_nested_form_for resource,

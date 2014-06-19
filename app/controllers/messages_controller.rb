@@ -13,7 +13,7 @@ class MessagesController < InheritedResources::Base
       resource.author = current_user
       resource.answer = true
       create! do |format|
-        setup_markdown
+        # setup_markdown
         parent.reload
         format.js
       end
@@ -26,7 +26,7 @@ class MessagesController < InheritedResources::Base
 
     resource.update_attribute :accepted, true
     ReputationService.process :accept, resource, current_user
-    setup_markdown
+    # setup_markdown
   end
 
   protected

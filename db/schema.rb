@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(version: 20140616065042) do
     t.datetime "updated_at"
     t.boolean  "answer"
     t.integer  "author_id"
-    t.integer  "attachments_count", default: 0,     null: false
-    t.integer  "comments_count",    default: 0,     null: false
+    t.integer  "attachments_count", default: 0
+    t.integer  "comments_count",    default: 0
     t.boolean  "accepted",          default: false
   end
 

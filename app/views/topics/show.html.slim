@@ -2,12 +2,12 @@ h1 = @topic.title
 hr
 .row
   .col-md-9
-    .question = render @topic.question, markdown: @markdown
+    .question = render @topic.question
 
     section#answers
       - if @topic.has_answers?
         = render 'answers', answers: @topic.answers,
-          answers_count: @topic.answers_count, markdown: @markdown
+          answers_count: @topic.answers_count
 
     hr
     - if user_signed_in?

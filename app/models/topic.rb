@@ -46,10 +46,6 @@ class Topic < ActiveRecord::Base
     answers.select { |a| a.accepted }.size > 0
   end
 
-  def answer_can_be_accepted_by?(user)
-    author == user && !has_accepted_answer?
-  end
-
   def answered_by?(user)
     if has_answers?
       answers.map { |answer| answer.author }.include? user

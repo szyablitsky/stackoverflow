@@ -73,9 +73,9 @@ describe MessagesController, type: :controller do
         context 'and topic already have accepted answer' do
           before { create(:answer, topic: topic, accepted: true) }
 
-          it 'responds with method not allowed status' do
+          it 'responds with method forbidden status' do
             accept_answer
-            expect(response.status).to eq 405
+            expect(response.status).to eq 403
           end
         end
       end

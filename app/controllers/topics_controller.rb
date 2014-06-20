@@ -2,6 +2,10 @@ class TopicsController < InheritedResources::Base
   before_action :authenticate_user!, except: [:home, :index, :show]
   actions :all, except: :destroy
 
+  load_and_authorize_resource
+  skip_load_resource only: [:home, :index, :show]
+  skip_authorize_resource only: [:home, :index, :show]
+
   def home
     @topics = Topic.for_home_page.decorate
   end
@@ -22,35 +26,32 @@ class TopicsController < InheritedResources::Base
   end
 
   def create
-    @topic = Topic.new(topic_params)
-    TagService.process params[:topic][:tags], for: @topic
-    @topic.question.author = current_user
-
+    resource.question.author = current_user
     create! do |success, failure|
       success.html do
-        channel = '/topics/new'
-        data = TopicsSerializer.new(@topic).to_hash
-        PrivatePub.publish_to channel, data
-
-        redirect_to question_path(@topic)
+        TagService.process params[:topic][:tags], for: resource
+        publish_new_topic
+        redirect_to question_path(resource)
       end
     end
   end
 
   def update
-    @topic = Topic.find(params[:id])
-
-    return head :forbidden unless @topic.author == current_user
-
     update! do |success, failure|
       success.html do
-        TagService.process params[:topic][:tags], for: @topic
-        redirect_to question_path(@topic)
+        TagService.process params[:topic][:tags], for: resource
+        redirect_to question_path(resource)
       end
     end
   end
 
   private
+
+  def publish_new_topic
+    channel = '/topics/new'
+    data = TopicsSerializer.new(resource).to_hash
+    PrivatePub.publish_to channel, data
+  end    
 
   def topic_params
     params.require(:topic).permit(

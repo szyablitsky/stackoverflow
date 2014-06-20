@@ -5,6 +5,8 @@ class MessagesController < InheritedResources::Base
   actions :create, :edit, :update
   custom_actions resource: :accept
 
+  load_and_authorize_resource
+
   def create
     if parent.answered_by? current_user
       @answered = true
@@ -20,9 +22,6 @@ class MessagesController < InheritedResources::Base
   end
 
   def accept
-    return head :forbidden unless parent.author == current_user
-    return head :method_not_allowed if parent.has_accepted_answer?
-
     resource.update_attribute :accepted, true
     ReputationService.process :accept, resource, current_user
   end

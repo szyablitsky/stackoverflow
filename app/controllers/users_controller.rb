@@ -2,16 +2,12 @@ class UsersController < InheritedResources::Base
   before_action :authenticate_user!, except: [:show]
   actions :show, :edit, :update
 
-  def show
-    @user = User.find(params[:id])
-    @questions = Topic.with_questions_by @user
-    @answers = Topic.with_answers_by @user
-    @reputation_changes = ReputationChange.received_by @user
-  end
+  load_and_authorize_resource
 
-  def update
-    return head :forbidden unless current_user.id.to_s == params[:id]
-    update!
+  def show
+    @questions = Topic.with_questions_by resource
+    @answers = Topic.with_answers_by resource
+    @reputation_changes = ReputationChange.received_by resource
   end
 
   private

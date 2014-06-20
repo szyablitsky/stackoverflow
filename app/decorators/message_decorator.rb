@@ -18,9 +18,7 @@ class MessageDecorator < Draper::Decorator
   end
 
   def add_comment_class
-    disabled = h.current_user.reputation < Privilege.create_comment ?
-               ' disabled' :
-               ''
-    "add-comment#{disabled}"
+    access_class = h.can?(:create, Comment) ? '' : ' disabled'
+    "add-comment#{access_class}"
   end
 end

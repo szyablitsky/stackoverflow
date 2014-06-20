@@ -30,12 +30,12 @@ table.fw id="message-#{message.id}"
               = message.author.reputation
       - if user_signed_in?
         p
-          - if message.answer && message.topic.answer_can_be_accepted_by?(current_user)
+          - if can? :accept, message
             - accept_link = true
             = link_to 'accept', 'javascript:void(0)',
               class: 'accept-answer-link',
               data: { question_id: message.topic.id, answer_id: message.id }
-          - if message.author == current_user
+          - if can? :update, message
             - if accept_link
               ' &nbsp;|
             = message.link_to_edit

@@ -3,11 +3,6 @@ class Privilege
     create_comment: 50
   }
 
-  def self.allowed(action, options)
-    user = options[:for]
-    user.reputation >= PRIVILEGES[action]
-  end
-
   def self.method_missing(symbol)
     return PRIVILEGES[symbol] if PRIVILEGES.key? symbol
     super

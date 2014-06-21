@@ -8,11 +8,17 @@ class CommentsController < InheritedResources::Base
 
   def create
     build_resource.author = current_user
+
     create! do |success, failure|
       success.json do
-        publish_new_comment
+        data = CommentsSerializer.new(resource).to_hash
+
+        channel = "/topics/#{parent.topic.id}/comments"
+        PrivatePub.publish_to channel, data
+
         render json: data
       end
+
       failure.json do
         render json: { errors: resource.errors }, status: :unprocessable_entity
       end
@@ -20,12 +26,6 @@ class CommentsController < InheritedResources::Base
   end
 
   protected
-
-  def publish_new_comment
-    channel = "/topics/#{parent.topic.id}/comments"
-    data = CommentsSerializer.new(resource).to_hash
-    PrivatePub.publish_to channel, data
-  end
 
   def comment_params
     params.require(:comment).permit(:body)

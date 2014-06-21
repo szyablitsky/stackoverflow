@@ -25,6 +25,7 @@ Some hilights of this project:
 11. Light controllers with [Inherited Resources][6].
 12. OAuth 2 authentication with Facebook and GitHub.
 13. [Redcarpet][7] for markdown render.
+14. [CanCanCan][8] for authorization.
 
 by [Sergey Zyablitsky](http://finch.pro)
 
@@ -35,3 +36,4 @@ by [Sergey Zyablitsky](http://finch.pro)
 [5]: https://github.com/drapergem/draper
 [6]: https://github.com/josevalim/inherited_resources
 [7]: https://github.com/vmg/redcarpet
+[8]: https://github.com/CanCanCommunity/cancancan

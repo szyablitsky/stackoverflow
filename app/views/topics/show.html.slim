@@ -14,7 +14,7 @@ hr
       - if @topic.answered_by? current_user
         = render 'answered', topic: @topic
       - else
-        = bootstrap_nested_form_for @answer,
+        = bootstrap_nested_form_for @answer, type: :js,
           url: question_answers_path(@topic), remote: true do |f|
           = f.text_area :body, label: 'Your answer', rows: 10
           = f.fields_for :attachments do |a|

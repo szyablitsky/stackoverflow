@@ -4,8 +4,8 @@ module TopicHelper
   end
 
   def markdown(source)
-    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML,
-                                        autolink: true, tables: true)
-    @markdown.render(h source).html_safe
+    @renderer ||= Redcarpet::Render::HTML.new(escape_html: true)
+    @markdown ||= Redcarpet::Markdown.new(@renderer, autolink: true)
+    @markdown.render(source).html_safe
   end
 end

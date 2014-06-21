@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :answers, controller: 'messages',
               only: [:create, :edit, :update] do
       post :accept, on: :member
+      post :voteup, on: :member
+      post :votedown, on: :member
     end
   end
 

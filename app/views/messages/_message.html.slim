@@ -2,7 +2,12 @@
 table.fw id="message-#{message.id}"
   tr
     td.votecell rowspan="2"
-      .vote.text-center
+      .vote
+        .text-center
+          = message.link_to :voteup
+        .score.text-center = message.score
+        .text-center
+          = message.link_to :votedown
       - if message.accepted
         .text-success.text-center
           span.glyphicon.glyphicon-ok title='accepted'

@@ -1,6 +1,8 @@
 class Privilege
   PRIVILEGES = {
-    create_comment: 50
+    create_comment: 50,
+    voteup: 15,
+    votedown: 125
   }
 
   def self.method_missing(symbol)

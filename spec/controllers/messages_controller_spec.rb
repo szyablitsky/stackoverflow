@@ -98,4 +98,90 @@ describe MessagesController, type: :controller do
       end
     end
   end
+
+  shared_examples 'vote' do
+    let(:topic) { create :topic }
+    let(:user) { create :user }
+    let(:other_user) { create :user }
+    let(:answer) { create(:answer, topic: topic, author: other_user) }
+
+    def vote_answer
+      post action, controller: :messages, question_id: topic,
+           id: answer, format: :json
+    end
+
+    context 'for authenticated user' do
+      before { login user }
+
+      context 'with ehough reputation' do
+        before { user.update_attribute :reputation, reputation }
+
+        it 'creates new vote' do
+          expect { vote_answer }.to change(Vote, :count).by(1)
+        end
+
+        it 'changes score' do
+          vote_answer
+          answer.reload
+          expect(answer.score).to eq(score)
+        end
+
+        it 'processes reputation change' do
+          expect(ReputationService).to receive(:process)
+            .with(reputation_change_type, answer, user)
+          vote_answer
+        end
+
+        context 'and user already voted' do
+          before { create(:vote, message: answer, user: user) }
+
+          it 'responds with method forbidden status' do
+            vote_answer
+            expect(response.status).to eq 403
+          end
+        end
+
+        context 'and his own answer' do
+          before { answer.update_attribute :author, user }
+
+          it 'responds with method forbidden status' do
+            vote_answer
+            expect(response.status).to eq 403
+          end
+        end
+      end
+
+      context 'with low reputation' do
+        it 'responds with forbidden status' do
+          vote_answer
+          expect(response.status).to eq 403
+        end
+      end
+    end
+
+    context 'for non authenticated user' do
+      it 'responds with unauthorized status' do
+        vote_answer
+        expect(response.status).to eq 401
+      end
+    end
+  end
+
+  describe 'POST #voteup' do
+    let(:action) { :voteup }
+    let(:reputation) { Privilege.voteup }
+    let(:reputation_change_type) { :upvote }
+    let(:score) { 1 }
+
+    it_behaves_like 'vote'
+  end
+
+  describe 'POST #votedown' do
+    let(:action) { :votedown }
+    let(:reputation) { Privilege.votedown }
+    let(:reputation_change_type) { :downvote }
+    let(:score) { -1 }
+
+    it_behaves_like 'vote'
+  end
 end

@@ -23,11 +23,13 @@
 //= require bootstrap/transition
 //= require bootstrap/collapse
 //= require bootstrap/alert
+//= require bootstrap/tooltip
 //= require select2
 //= require common
 //= require topics
 //= require topic_tags
 //= require topic_answers
 //= require topic_comments
+//= require topic_voting
 //= require handlebars.runtime
 //= require_tree ./templates

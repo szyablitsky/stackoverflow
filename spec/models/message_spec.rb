@@ -6,10 +6,12 @@ describe Message do
   it { is_expected.to have_many :comments }
   it { is_expected.to have_many :attachments }
   it { is_expected.to have_many :reputation_changes }
+  it { is_expected.to have_many :votes }
 
   it { is_expected.to accept_nested_attributes_for :attachments }
 
   it { is_expected.to validate_presence_of :body }
+  it { is_expected.to validate_numericality_of :score }
 
   describe '#has_attachments?' do
     context 'when attachments exist' do

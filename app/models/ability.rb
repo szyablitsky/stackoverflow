@@ -22,6 +22,17 @@ class Ability
     can :update, User, id: @user.id
 
     can :accept, Message, answer: true,
-        topic: { author: @user, :'has_accepted_answer?' => false }
+        topic: { author: @user, has_accepted_answer?: false }
+
+    if @user.reputation >= Privilege.voteup
+      can(:voteup, Message) do |message|
+        message.author != @user && message.not_voted_by?(@user)
+      end
+    end
+    if @user.reputation >= Privilege.votedown
+      can(:votedown, Message) do |message|
+        message.author != @user && message.not_voted_by?(@user)
+      end
+    end
   end
 end

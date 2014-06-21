@@ -51,10 +51,12 @@ group :development do
 end
 
 group :development, :test do
+  gem 'factory_girl_rails'
   gem 'spring-commands-rspec'
   gem 'rspec-rails'
+  gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
+  gem 'pry-byebug'
   gem 'launchy'
-  gem 'factory_girl_rails'
 end
 
 group :test do

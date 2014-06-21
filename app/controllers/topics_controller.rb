@@ -51,7 +51,7 @@ class TopicsController < InheritedResources::Base
     channel = '/topics/new'
     data = TopicsSerializer.new(resource).to_hash
     PrivatePub.publish_to channel, data
-  end    
+  end
 
   def topic_params
     params.require(:topic).permit(

@@ -7,7 +7,7 @@ hr
     hr
     = bootstrap_nested_form_for resource,
       url: question_answer_path(parent, resource) do |f|
-      = f.text_area :body, label: 'Your answer'
+      = f.text_area :body, label: 'Your answer', rows: 10
       = f.primary 'Save changes'
       =< link_to 'Cancel', question_path(parent), class: 'btn btn-default'
 

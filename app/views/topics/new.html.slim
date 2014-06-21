@@ -1,7 +1,7 @@
 = bootstrap_nested_form_for @topic, url: questions_path do |f|
-  = f.text_field :title
+  = f.text_field :title, autofocus: true
   = f.fields_for :question do |q|
-    = q.text_area :body, hide_label: :true
+    = q.text_area :body, hide_label: :true, rows: 10
     = f.text_field :tags, value: @topic.tags.map{|t|t.name}.join(','),
                    data: { role: 'tagsinput' }, placeholder: 'space delimited'
     = q.fields_for :attachments do |a|

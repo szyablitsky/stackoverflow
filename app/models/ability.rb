@@ -24,13 +24,13 @@ class Ability
     can :accept, Message, answer: true,
         topic: { author: @user, has_accepted_answer?: false }
 
-    if @user.reputation >= Privilege.voteup
-      can(:voteup, Message) do |message|
-        message.author != @user && message.not_voted_by?(@user)
-      end
-    end
-    if @user.reputation >= Privilege.votedown
-      can(:votedown, Message) do |message|
+    vote :voteup
+    vote :votedown
+  end
+
+  def vote(type)
+    if @user.reputation >= Privilege.send(type)
+      can(type, Message) do |message|
         message.author != @user && message.not_voted_by?(@user)
       end
     end

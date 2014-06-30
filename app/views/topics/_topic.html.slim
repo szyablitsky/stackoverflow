@@ -2,7 +2,7 @@ li
   .row
     .col-md-4.col-lg-3.counters
       .votes
-        .mini-counts 0
+        .mini-counts = topic.question.score
         p.small = topic.votes_label
       .answers class=topic.answers_class
         .mini-counts = topic.answers_count

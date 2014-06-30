@@ -2,7 +2,7 @@ class TopicDecorator < Draper::Decorator
   delegate_all
 
   def votes_label
-    'votes'
+    object.question.score == 1  ? 'vote' : 'votes'
   end
 
   def answers_class

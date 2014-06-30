@@ -4,7 +4,7 @@ class Topic < ActiveRecord::Base
 
   has_many :messages
   has_one :question, -> { where(answer: false) }, class_name: 'Message'
-  has_many :answers, -> { where(answer: true).order(accepted: :desc, updated_at: :desc) },
+  has_many :answers, -> { where(answer: true).order(accepted: :desc, score: :desc, updated_at: :desc) },
            class_name: 'Message'
 
   has_many :topic_tags

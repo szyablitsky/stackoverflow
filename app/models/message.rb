@@ -19,7 +19,7 @@ class Message < ActiveRecord::Base
     comments_count > 0
   end
 
-  def not_voted_by? user
+  def not_voted_by?(user)
     votes.where(user: user).count == 0
   end
 end

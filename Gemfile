@@ -32,6 +32,7 @@ gem 'cancancan'
 gem 'draper'
 gem 'carrierwave'
 gem 'inherited_resources'
+gem 'doorkeeper'
 
 gem 'bootstrap_form'
 gem 'nested_form'
@@ -66,4 +67,5 @@ group :test do
   gem 'capybara'
   gem 'coveralls', require: false
   gem 'poltergeist'
+  gem 'json_spec'
 end

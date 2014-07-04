@@ -25,6 +25,7 @@ html lang="en"
         .collapse.navbar-collapse#navbar-collapse-1
           ul.nav.navbar-nav
             = nav_link_to 'Ask question', new_question_path, {}, wrapper: 'li'
+            = nav_link_to 'Tags', tags_path, {}, wrapper: 'li'
           p.navbar-text.navbar-right
             - if user_signed_in?
               ' Signed in as

@@ -1,5 +1,5 @@
 class AddMessagesCounterToTopic < ActiveRecord::Migration
-def up
+  def up
     add_column :topics, :messages_count, :integer, default: 0, null: false
 
     Topic.find_each do |m|

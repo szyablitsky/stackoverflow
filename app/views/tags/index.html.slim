@@ -1,0 +1,11 @@
+h1 Tags
+hr
+.row
+  .col-md-9
+    ul#tags
+      - collection.each do |tag|
+        li
+          span.label.label-info>
+            = link_to tag.name, questions_path(tag: tag.name)
+          span.badge = tag.topic_tags_count
+  .col-md-3

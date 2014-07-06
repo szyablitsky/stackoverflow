@@ -14,7 +14,7 @@ feature 'Voting' do
     end
   end
 
-  shared_examples 'voting' do
+  shared_examples_for 'voting' do
     context 'and has enough reputation' do
       background { user.update_attribute(:reputation, reputation) }
 

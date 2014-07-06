@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   use_doorkeeper
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
 
   resources :questions, controller: 'topics', except: [:destroy] do
     resources :answers, controller: 'messages',
@@ -24,6 +26,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:index] do
         get :me, on: :collection
+      end
+      resources :questions, controller: 'topics',
+                only: [:index, :show, :create] do
+        resources :answers, controller: 'messages',
+                  only: [:index, :show, :create]
       end
     end
   end

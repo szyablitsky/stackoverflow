@@ -49,7 +49,7 @@ class TopicsController < InheritedResources::Base
 
   def publish_new_topic
     channel = '/topics/new'
-    data = TopicsSerializer.new(resource).to_hash
+    data = TopicsSerializer.new(resource).to_hash type: :private_pub
     PrivatePub.publish_to channel, data
   end
 

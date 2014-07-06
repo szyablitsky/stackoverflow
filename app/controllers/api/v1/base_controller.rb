@@ -1,4 +1,5 @@
 class Api::V1::BaseController < InheritedResources::Base
+  protect_from_forgery with: :null_session
   doorkeeper_for :all
   layout false
 

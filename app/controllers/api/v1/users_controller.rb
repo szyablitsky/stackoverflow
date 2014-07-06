@@ -1,11 +1,11 @@
 class Api::V1::UsersController < Api::V1::BaseController
   respond_to :json
 
-  def me
-    respond_with({ user: current_resource_owner })
+  def index
+    respond_with({ users: collection })
   end
 
-  def index
-    respond_with({ users: User.all })
+  def me
+    respond_with({ user: current_resource_owner })
   end
 end

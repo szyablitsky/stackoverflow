@@ -99,7 +99,7 @@ describe MessagesController, type: :controller do
     end
   end
 
-  shared_examples 'vote' do
+  shared_examples_for 'vote' do
     let(:topic) { create :topic }
     let(:user) { create :user }
     let(:other_user) { create :user }
@@ -116,19 +116,9 @@ describe MessagesController, type: :controller do
       context 'with ehough reputation' do
         before { user.update_attribute :reputation, reputation }
 
-        it 'creates new vote' do
-          expect { vote_answer }.to change(Vote, :count).by(1)
-        end
-
-        it 'changes score' do
-          vote_answer
-          answer.reload
-          expect(answer.score).to eq(score)
-        end
-
-        it 'processes reputation change' do
-          expect(ReputationService).to receive(:process)
-            .with(reputation_change_type, answer, user)
+        it 'processes vote' do
+          expect(VoteService).to receive(:process)
+            .with(action, answer, user)
           vote_answer
         end
 
@@ -170,7 +160,6 @@ describe MessagesController, type: :controller do
   describe 'POST #voteup' do
     let(:action) { :voteup }
     let(:reputation) { Privilege.voteup }
-    let(:reputation_change_type) { :upvote }
     let(:score) { 1 }
 
     it_behaves_like 'vote'
@@ -179,7 +168,6 @@ describe MessagesController, type: :controller do
   describe 'POST #votedown' do
     let(:action) { :votedown }
     let(:reputation) { Privilege.votedown }
-    let(:reputation_change_type) { :downvote }
     let(:score) { -1 }
 
     it_behaves_like 'vote'

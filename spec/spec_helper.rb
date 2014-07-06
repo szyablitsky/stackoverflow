@@ -29,6 +29,8 @@ RSpec.configure do |config|
 
   config.include ControllerMacros, type: :controller
 
+  config.include ApiMacros, file_path: %r(spec/api)
+
   config.use_transactional_fixtures = true
 
   config.order = 'random'

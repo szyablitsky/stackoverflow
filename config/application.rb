@@ -16,7 +16,7 @@ Bundler.require(*Rails.groups)
 module Stackoverflow
   class Application < Rails::Application
     config.autoload_paths += %W(#{config.root}/app/services)
-    config.autoload_paths += %W(#{config.root}/app/serializers)
+    # config.autoload_paths += %W(#{config.root}/app/serializers)
 
     config.nav_lynx.selected_class = 'active'
 

@@ -5,7 +5,13 @@ class CommentsSerializer
     @comment = comment
   end
 
-  def to_hash
+  def to_hash(options)
+    self.send "to_#{options[:type]}_hash".to_sym
+  end
+
+  private
+
+  def to_private_pub_hash
     {
       message_id: @comment.message.id,
       id: @comment.id,

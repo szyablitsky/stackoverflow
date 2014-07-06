@@ -1,4 +1,16 @@
 GIT
+  remote: git://github.com/andreareginato/redis-throttle.git
+  revision: e551ac6067b980da873fd6fa81dbf7fa6198aee4
+  specs:
+    redis-throttle (0.0.1)
+      activesupport
+      hiredis
+      rack
+      rack-throttle
+      redis
+      redis-namespace
+
+GIT
   remote: git://github.com/nixme/jazz_hands.git
   revision: 5e4b48f145883ecb14b55bf04eacc28ac9662676
   branch: bring-your-own-debugger
@@ -175,6 +187,7 @@ GEM
     highline (1.6.21)
     hike (1.2.3)
     hirb (0.7.2)
+    hiredis (0.5.2)
     http_parser.rb (0.6.0)
     i18n (0.6.9)
     inherited_resources (1.5.0)
@@ -223,6 +236,8 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
+    oj (2.9.8)
+    oj_mimic_json (1.0.1)
     omniauth (1.2.1)
       hashie (>= 1.2, < 3)
       rack (~> 1.0)
@@ -276,6 +291,8 @@ GEM
       rack (>= 0.9.1)
     rack-test (0.6.2)
       rack (>= 1.0)
+    rack-throttle (0.3.0)
+      rack (>= 1.0.0)
     rails (4.1.4)
       actionmailer (= 4.1.4)
       actionpack (= 4.1.4)
@@ -302,6 +319,9 @@ GEM
     rake (10.3.2)
     rb-readline (0.5.1)
     redcarpet (3.1.2)
+    redis (3.1.0)
+    redis-namespace (1.5.0)
+      redis (~> 3.0, >= 3.0.4)
     remotipart (1.2.1)
     request_store (1.0.6)
     responders (1.1.0)
@@ -434,6 +454,8 @@ DEPENDENCIES
   meta_request
   nav_lynx
   nested_form
+  oj
+  oj_mimic_json
   omniauth-facebook
   omniauth-github
   pg
@@ -446,6 +468,7 @@ DEPENDENCIES
   rails_12factor
   rb-readline
   redcarpet
+  redis-throttle!
   remotipart
   rspec-rails
   sass-rails (~> 4.0.3)

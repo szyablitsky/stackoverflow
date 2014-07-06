@@ -26,7 +26,8 @@ Some hilights of this project:
 12. OAuth 2 authentication with Facebook and GitHub.
 13. [Redcarpet][7] for markdown render.
 14. [CanCanCan][8] for authorization.
-15. OAuth 2 authenticated API with [Doorkeeper][9].
+15. API OAuth 2 authenticated with [Doorkeeper][9] and powered by [optimized JSON][10].
+16. API request rate limiting with [Redis Throttle Middleware][11].
 
 by [Sergey Zyablitsky](http://finch.pro)
 
@@ -39,3 +40,5 @@ by [Sergey Zyablitsky](http://finch.pro)
 [7]: https://github.com/vmg/redcarpet
 [8]: https://github.com/CanCanCommunity/cancancan
 [9]: https://github.com/doorkeeper-gem/doorkeeper
+[10]: https://github.com/ohler55/oj
+[11]: https://github.com/andreareginato/redis-throttle

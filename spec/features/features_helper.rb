@@ -5,7 +5,11 @@ Capybara.javascript_driver = :poltergeist
 
 RSpec.configure do |config|
   OmniAuth.config.test_mode = true
-  
+
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app, timeout: 60)
+  end  
+
   config.include FeatureMacros, type: :feature
 
   config.use_transactional_fixtures = false

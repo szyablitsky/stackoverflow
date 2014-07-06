@@ -28,17 +28,11 @@ class MessagesController < InheritedResources::Base
   end
 
   def voteup
-    Vote.create!  up: true, message: resource, user: current_user
-    resource.increment! :score
-    ReputationService.process :upvote, resource, current_user
-    render json: { score: resource.score, type: resource.decorate.type }
+    render json: VoteService.process(:voteup, resource, current_user)
   end
 
   def votedown
-    Vote.create!  up: false, message: resource, user: current_user
-    resource.decrement! :score
-    ReputationService.process :downvote, resource, current_user
-    render json: { score: resource.score, type: resource.decorate.type }
+    render json: VoteService.process(:votedown, resource, current_user)
   end
 
   protected

@@ -11,7 +11,7 @@ class CommentsController < InheritedResources::Base
 
     create! do |success, failure|
       success.json do
-        data = CommentsSerializer.new(resource).to_hash
+        data = CommentsSerializer.new(resource).to_hash type: :private_pub
 
         channel = "/topics/#{parent.topic.id}/comments"
         PrivatePub.publish_to channel, data

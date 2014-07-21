@@ -30,6 +30,7 @@ gem 'select2-rails'
 gem 'devise'
 gem 'omniauth-github'
 gem 'omniauth-facebook'
+gem 'hashie_rails' # ActiveModel::ForbiddenAttributesError workaround for OmniAuth::AuthHash
 gem 'cancancan'
 gem 'draper'
 gem 'carrierwave'

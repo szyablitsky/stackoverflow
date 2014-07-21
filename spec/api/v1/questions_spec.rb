@@ -34,7 +34,7 @@ RSpec.describe 'Questions API' do
         end
       end
 
-      it "returns body for question" do
+      it 'returns body for question' do
         topics.each_with_index do |topic, i|
           json_val = topic.question.body.to_json
           expect_json_val json_val, 'questions/0/body'
@@ -103,7 +103,7 @@ RSpec.describe 'Questions API' do
           expect_json_size 2, 'question/attachments'
         end
 
-        it "returns url for attachment" do
+        it 'returns url for attachment' do
           json_val = attachment.file.url.to_json
           expect_json_val json_val, 'question/attachments/0'
         end
@@ -148,7 +148,7 @@ RSpec.describe 'Questions API' do
           expect_json_size 2, 'question/tags'
         end
 
-        it "returns name for tag" do
+        it 'returns name for tag' do
           json_val = tag.name.to_json
           expect_json_val json_val, 'question/tags/0'
         end
@@ -163,7 +163,7 @@ RSpec.describe 'Questions API' do
     end
 
     def do_request(options = {})
-      post "/api/v1/questions", { format: :json, topic: topic }.merge(options)
+      post '/api/v1/questions', { format: :json, topic: topic }.merge(options)
     end
 
     it_behaves_like 'prevents unauthorized access'

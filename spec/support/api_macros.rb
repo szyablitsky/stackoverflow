@@ -7,4 +7,3 @@ module ApiMacros
     expect(response.body).to have_json_size(size).at_path(path)
   end
 end
-  

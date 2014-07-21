@@ -90,7 +90,7 @@ RSpec.describe 'Answers API' do
           expect_json_size 2, 'answer/attachments'
         end
 
-        it "returns url for attachment" do
+        it 'returns url for attachment' do
           json_val = attachment.file.url.to_json
           expect_json_val json_val, 'answer/attachments/0'
         end

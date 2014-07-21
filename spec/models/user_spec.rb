@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_presence_of :name }
   it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
 
-  describe '.find_for_facebook_oauth' do
+  describe '.find_for_oauth' do
     let(:attributes) { attributes_for :authorization }
     let(:auth) { OmniAuth::AuthHash.new(attributes) }
 
@@ -25,13 +25,13 @@ RSpec.describe User, type: :model do
     context 'registered user' do
       let!(:user) { create :user }
 
-      context 'already signed in with facebook' do
+      context 'already signed in with external provider' do
         before { user.authorizations.create(attributes) }
 
         it { expect(call).to eq user }
       end
 
-      context 'first time signs in with facebook' do
+      context 'first time signs in with external provider' do
         before { auth.merge! info: { email: user.email } }
 
         it { expect { call }.to change(user.authorizations, :count).by(1) }

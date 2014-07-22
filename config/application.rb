@@ -7,6 +7,7 @@ require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'action_view/railtie'
 require 'sprockets/railtie'
+require 'rack/redis_throttle'
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -16,7 +17,7 @@ Bundler.require(*Rails.groups)
 module Stackoverflow
   class Application < Rails::Application
     config.autoload_paths += %W(#{config.root}/app/services)
-    # config.autoload_paths += %W(#{config.root}/app/serializers)
+    config.autoload_paths += %W(#{config.root}/lib/middlewares)
 
     config.nav_lynx.selected_class = 'active'
 
@@ -29,5 +30,7 @@ module Stackoverflow
                        request_specs: false,
                        controller_specs: true
     end
+
+    config.middleware.insert_after Rack::Runtime, 'DailyRateLimit' unless Rails.env.test?
   end
 end

@@ -37,6 +37,8 @@ gem 'carrierwave'
 gem 'inherited_resources'
 gem 'doorkeeper'
 gem 'redis-throttle', github: 'andreareginato/redis-throttle'
+gem 'sidetiq'
+gem 'sinatra', require: false
 
 gem 'bootstrap_form'
 gem 'nested_form'
@@ -72,4 +74,5 @@ group :test do
   gem 'coveralls', require: false
   gem 'poltergeist'
   gem 'json_spec'
+  gem 'timecop'
 end

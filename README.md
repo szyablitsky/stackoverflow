@@ -11,23 +11,25 @@ This is a demo of my skills as a Ruby on Rails developer. This app can be viewed
 
 Some hilights of this project:
 
-1. All user stories are delivered using BDD and can be seen in Issues.
-2. Styles by Twitter Bootstrap.
-3. Posting answers via AJAX with `.js.erb` views.
-4. Posting comments via AJAX and JSON with jQuery handlers and Handlebars templates.
-5. Comments propagation via Comet with [Private Pub][3] / [Faye][4].
-5. Custom RSpec matcher for Rais `delegate`.
-6. Tagging questions via [Select2][1] jQuery plugin.
-7. Database query optimizations via `includes`, `counter_cache`, `connection.select_all`.
-8. File uploads via [CarrierWave][2].
-9. Service classes for multi-model use cases and other not related directly to model logic.
-10. Models decoration with [Draper][5].
-11. Light controllers with [Inherited Resources][6].
-12. OAuth 2 authentication with Facebook and GitHub.
-13. [Redcarpet][7] for markdown render.
-14. [CanCanCan][8] for authorization.
-15. API OAuth 2 authenticated with [Doorkeeper][9] and powered by [optimized JSON][10].
-16. API request rate limiting with [Redis Throttle Middleware][11].
+1. Trough test coverage for models, controllers, services and use cases.
+2. All user stories are delivered using BDD and can be seen in Issues.
+3. Styles by Twitter Bootstrap.
+4. Posting answers via AJAX with `.js.erb` views.
+5. Posting comments via AJAX and JSON with jQuery handlers and Handlebars templates.
+6. Comments propagation via Comet with [Private Pub][3] / [Faye][4].
+7. Custom RSpec matcher for Rais `delegate`.
+8. Tagging questions via [Select2][1] jQuery plugin.
+9. Database query optimizations via `includes`, `counter_cache`, `connection.select_all`.
+10. File uploads via [CarrierWave][2].
+11. Service classes for multi-model use cases and other not related directly to model logic.
+12. Models decoration with [Draper][5].
+13. Light controllers with [Inherited Resources][6].
+14. OAuth 2 authentication with Facebook and GitHub.
+15. [Redcarpet][7] for markdown render.
+16. [CanCanCan][8] for authorization.
+17. API, OAuth 2 authenticated with [Doorkeeper][9] and powered by [optimized JSON][10].
+18. API request rate limiting with [Redis Throttle Middleware][11].
+19. Daily questions digest via email for all users with [Sidetiq][12] workers.
 
 by [Sergey Zyablitsky](http://finch.pro)
 
@@ -42,3 +44,4 @@ by [Sergey Zyablitsky](http://finch.pro)
 [9]: https://github.com/doorkeeper-gem/doorkeeper
 [10]: https://github.com/ohler55/oj
 [11]: https://github.com/andreareginato/redis-throttle
+[12]: https://github.com/tobiassvn/sidetiq

@@ -1,0 +1,4 @@
+ul
+  - @topics.each do |topic|
+    li
+      = link_to topic.title, "http://so-clone.herokuapp.com/questions/#{topic.id}"

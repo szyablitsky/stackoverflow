@@ -1,7 +1,6 @@
 require 'rack/redis_throttle'
 
 class DailyRateLimit < Rack::RedisThrottle::Daily
-
   def call(env)
     @user_rate_limit = user_rate_limit(env)
     super

@@ -12,7 +12,7 @@
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
+/log
 /tmp
 
 /coverage
@@ -21,3 +21,6 @@
 npm-debug.log
 
 /public/uploads
+
+/config/development.sphinx.conf
+/db/sphinx

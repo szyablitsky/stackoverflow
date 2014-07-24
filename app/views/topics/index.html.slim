@@ -1,4 +1,7 @@
-h1 Questions
+- if params[:search]
+  h1 Search results for '#{params[:search]}'
+- else
+  h1 Questions
 hr
 .row
   .col-md-9

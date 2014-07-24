@@ -12,9 +12,9 @@ RSpec.describe DailyDigestWorker do
       ]
     end
 
-    it "call mailer with yesterday's questions", pending: true do
+    it "call mailer with yesterday's questions" do
       create :topic
-      expect(QuestionsMailer).to receive(:digest).with(topics, yesterday)
+      expect(QuestionsMailer).to receive(:digest).with(topics, yesterday).and_call_original
       subject.perform
     end
 

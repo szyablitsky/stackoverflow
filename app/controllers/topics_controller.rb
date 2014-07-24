@@ -13,7 +13,11 @@ class TopicsController < InheritedResources::Base
   end
 
   def index
-    @topics = Topic.includes(:tags, question: :author).all.decorate
+    if params[:search]
+      @topics = Topic.search(params[:search]).map { |t| t.decorate }
+    else
+      @topics = Topic.includes(:tags, question: :author).all.decorate
+    end
   end
 
   def show

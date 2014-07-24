@@ -39,6 +39,8 @@ gem 'doorkeeper'
 gem 'redis-throttle', github: 'andreareginato/redis-throttle'
 gem 'sidetiq'
 gem 'sinatra', require: false
+gem 'mysql2'
+gem 'thinking-sphinx'
 
 gem 'bootstrap_form'
 gem 'nested_form'

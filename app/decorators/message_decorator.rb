@@ -14,7 +14,7 @@ class MessageDecorator < Draper::Decorator
     path = answer? ?
            url_helpers.edit_question_answer_path(topic, object) :
            url_helpers.edit_question_path(topic)
-    %Q(<a href="#{path}">edit</a>).html_safe
+    h.link_to 'edit', path
   end
 
   def add_comment_class
@@ -24,16 +24,31 @@ class MessageDecorator < Draper::Decorator
 
   def link_to(action) # voteup / votedown
     direction = action.to_s[4..-1]
-    icon = %Q(<span class="glyphicon glyphicon-circle-arrow-#{direction}"></span>).html_safe
+    css_class = "glyphicon glyphicon-circle-arrow-#{direction}"
+    icon = %Q(<span class="#{css_class}"></span>).html_safe
 
     if h.can?(action, object)
-      h.link_to icon, url_helpers.send("#{action}_question_answer_path".to_sym, topic, object),
-                method: :post, remote: true, class: "vote-#{direction}",
+      path = "#{action}_question_answer_path".to_sym
+      h.link_to icon, url_helpers.send(path, topic, object), method: :post,
+                remote: true, class: "vote-#{direction}",
                 title: "vote #{direction}",
                 data: { type: :json, toggle: 'tooltip', placement: 'right' }
     else
-      h.link_to icon, 'javascript:void(0)', class: "vote-#{direction} disabled",
-                title: vote_title(action), data: { toggle: 'tooltip', placement: 'right' }
+      h.link_to icon, 'javascript:void(0)', title: vote_title(action),
+                class: "vote-#{direction} disabled",
+                data: { toggle: 'tooltip', placement: 'right' }
+    end
+  end
+
+  def link_to_subscribtion
+    topic = object.topic
+    options = { remote: true, method: :post, class: 'subscription' }
+    if h.can?(:subscribe, topic)
+      h.link_to 'subscribe',
+                url_helpers.subscribe_question_path(topic), options
+    else
+      h.link_to 'unsubscribe',
+                url_helpers.unsubscribe_question_path(topic), options
     end
   end
 

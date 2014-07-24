@@ -22,7 +22,7 @@ RSpec.describe AnswersMailer, type: :mailer do
     end
 
     it 'mails to all subscribed users' do
-      emails = [ topic.question.author.email, user.email ] 
+      emails = [ user.email, topic.question.author.email ] 
       expect(mail.to).to eq emails
     end
   end

@@ -35,15 +35,19 @@ table.fw id="message-#{message.id}"
               = message.author.reputation
       - if user_signed_in?
         p
+          - if can? :update, message
+            - edit_link = true
+            = message.link_to_edit
           - if can? :accept, message
-            - accept_link = true
+            - if edit_link
+              ' &nbsp;|
             = link_to 'accept', 'javascript:void(0)',
               class: 'accept-answer-link',
               data: { question_id: message.topic.id, answer_id: message.id }
-          - if can? :update, message
-            - if accept_link
+          - unless message.answer?
+            - if edit_link
               ' &nbsp;|
-            = message.link_to_edit
+            = message.link_to_subscribtion
   tr
     td.comments
       ul.comments-list

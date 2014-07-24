@@ -1,7 +1,9 @@
 class TopicsController < InheritedResources::Base
   before_action :authenticate_user!, except: [:home, :index, :show]
   actions :all, except: :destroy
-
+  custom_actions resource: [:subscribe, :unsubscribe]
+  respond_to :js, only: [:subscribe, :unsubscribe]
+  
   load_and_authorize_resource
   skip_load_resource only: [:home, :index, :show]
   skip_authorize_resource only: [:home, :index, :show]
@@ -44,6 +46,14 @@ class TopicsController < InheritedResources::Base
         redirect_to question_path(resource)
       end
     end
+  end
+
+  def subscribe
+    Subscription.create!(topic: resource, user: current_user)
+  end
+
+  def unsubscribe
+    Subscription.where(topic: resource, user: current_user).destroy_all
   end
 
   private

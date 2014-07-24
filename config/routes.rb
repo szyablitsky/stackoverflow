@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       post :voteup, on: :member
       post :votedown, on: :member
     end
+    post :subscribe, on: :member
+    post :unsubscribe, on: :member
   end
 
   resources :messages, only: [] do

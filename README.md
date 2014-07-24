@@ -29,7 +29,8 @@ Some hilights of this project:
 16. [CanCanCan][8] for authorization.
 17. API, OAuth 2 authenticated with [Doorkeeper][9] and powered by [optimized JSON][10].
 18. API request rate limiting with [Redis Throttle Middleware][11].
-19. Daily questions digest via email for all users with [Sidetiq][12] workers.
+19. New answers notification via email with [Sidekiq][12].
+20. Daily questions digest via email for all users with [Sidetiq][13].
 
 by [Sergey Zyablitsky](http://finch.pro)
 
@@ -44,4 +45,5 @@ by [Sergey Zyablitsky](http://finch.pro)
 [9]: https://github.com/doorkeeper-gem/doorkeeper
 [10]: https://github.com/ohler55/oj
 [11]: https://github.com/andreareginato/redis-throttle
-[12]: https://github.com/tobiassvn/sidetiq
+[12]: https://github.com/mperham/sidekiq
+[13]: https://github.com/tobiassvn/sidetiq

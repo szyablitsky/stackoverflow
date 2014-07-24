@@ -60,5 +60,18 @@ RSpec.describe Ability, type: :model do
       before { answer.update_attribute :author, other_user }
       it { is_expected.not_to be_able_to :update, answer }
     end
+
+    context 'trying to subscribe' do
+      context 'and already subscribed' do
+        before { create :subscription, topic: topic, user: user }
+        it { is_expected.not_to be_able_to :subscribe, topic }
+        it { is_expected.to be_able_to :unsubscribe, topic }
+      end
+
+      context 'and not subscribed' do
+        it { is_expected.to be_able_to :subscribe, topic }
+        it { is_expected.not_to be_able_to :unsubscribe, topic }
+      end
+    end
   end
 end

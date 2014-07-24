@@ -14,6 +14,7 @@ feature 'Answering question', %q(
 
   context 'when signed in' do
     given(:user) { create(:user) }
+    given(:other_user) { create(:user) }
 
     background { login user }
 
@@ -48,10 +49,11 @@ feature 'Answering question', %q(
     end
 
     scenario "notification sent when user answers question", pending: true do
+      create :subscription, topic: topic, user: other_user
       expect { answer_question }
         .to change(ActionMailer::Base.deliveries, :size).by(1)
       mail = ActionMailer::Base.deliveries.last
-      expect(mail.to).to eq topic.question.author.email
+      expect(mail.to).to eq [topic.question.author.email, other_user.email]
     end
 
     context 'and already answered question' do

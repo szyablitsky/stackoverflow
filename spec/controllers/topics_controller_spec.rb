@@ -105,4 +105,83 @@ describe TopicsController, type: :controller do
       end
     end
   end
+
+  describe 'POST #subscribe' do
+    let!(:topic) { create(:topic) }
+    let(:user) { create(:user) }
+
+    before { login user }
+
+    def subscribe_topic
+      post :subscribe, id: topic, format: :js
+    end
+
+    it 'creates subscription' do
+      expect { subscribe_topic }.to change(Subscription, :count).by(1)
+    end
+
+    it 'subscribes user' do
+      subscribe_topic
+      expect(Subscription.last.user).to eq(user)
+    end
+
+    it 'subscribes to topic' do
+      subscribe_topic
+      expect(Subscription.last.topic).to eq(topic)
+    end
+
+    context 'user already subscribed' do
+      before { create :subscription, topic: topic, user: user }
+
+
+      it 'returns 403 status' do
+        subscribe_topic
+        expect(response.status).to eq 403
+      end
+    end
+  end
+
+  describe 'POST #unsubscribe' do
+    let(:topic) { create(:topic) }
+    let(:user) { create(:user) }
+    let(:other_topic) { create(:topic) }
+    let(:other_user) { create(:user) }
+
+    before { login user }
+
+    def unsubscribe_topic
+      post :unsubscribe, id: topic, format: :js
+    end
+
+    context 'user already subscribed' do
+      before do
+        create :subscription, topic: topic, user: user
+        create :subscription, topic: topic, user: other_user
+        create :subscription, topic: other_topic, user: other_user
+        create :subscription, topic: other_topic, user: user
+      end
+
+      it 'deletes subscription' do
+        expect { unsubscribe_topic }.to change(Subscription, :count).by(-1)
+      end
+
+      it 'unsubscribes user' do
+        unsubscribe_topic
+        user.reload
+        expect(user.subscriptions.where(topic: topic)).to be_empty
+      end
+
+      it 'unsubscribes from topic' do
+        unsubscribe_topic
+        expect(topic.subscriptions.where(user: user)).to be_empty
+      end
+    end
+
+    context 'user not subscribed' do
+      it 'returns 403 status' do
+        unsubscribe_topic
+        expect(response.status).to eq 403
+      end
+    end
+  end
 end

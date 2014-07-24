@@ -24,13 +24,20 @@ class Ability
     can :accept, Message, answer: true,
         topic: { author: @user, has_accepted_answer?: false }
 
+    can :subscribe, Topic do |topic|
+      topic.subscriptions.where(user: @user).size == 0
+    end
+    can :unsubscribe, Topic do |topic|
+      topic.subscriptions.where(user: @user).size > 0
+    end
+
     vote :voteup
     vote :votedown
   end
 
-  def vote(type)
-    if @user.reputation >= Privilege.send(type)
-      can(type, Message) do |message|
+  def vote(vote_type)
+    if @user.reputation >= Privilege.send(vote_type)
+      can(vote_type, Message) do |message|
         message.author != @user && message.not_voted_by?(@user)
       end
     end

@@ -75,6 +75,15 @@ describe TopicsController, type: :controller do
         expect(assigns(:topic).question.author).to eq(user)
       end
 
+      it 'creates subscription' do
+        expect { create_topic }.to change(Subscription, :count).by(1)
+      end
+
+      it 'creates subscription for topic author' do
+        create_topic
+        expect(Subscription.last.user).to eq(user)
+      end
+
       it 'redirects to show view' do
         create_topic
         expect(response).to redirect_to question_path(Topic.all.last)

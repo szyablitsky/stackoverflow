@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723085149) do
+ActiveRecord::Schema.define(version: 20140724104144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,16 @@ ActiveRecord::Schema.define(version: 20140723085149) do
   add_index "reputation_changes", ["committer_id"], name: "index_reputation_changes_on_committer_id", using: :btree
   add_index "reputation_changes", ["message_id"], name: "index_reputation_changes_on_message_id", using: :btree
   add_index "reputation_changes", ["receiver_id"], name: "index_reputation_changes_on_receiver_id", using: :btree
+
+  create_table "subscriptions", force: true do |t|
+    t.integer  "topic_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "subscriptions", ["topic_id"], name: "index_subscriptions_on_topic_id", using: :btree
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "tags", force: true do |t|
     t.string   "name"

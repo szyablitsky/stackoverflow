@@ -5,6 +5,7 @@ FactoryGirl.define do
 
     after :create do |topic|
       create(:question, topic: topic)
+      create(:subscription, topic: topic, user: topic.question.author)
     end
 
     factory :topic_with_answers do

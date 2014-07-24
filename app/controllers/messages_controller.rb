@@ -15,9 +15,11 @@ class MessagesController < InheritedResources::Base
       build_resource
       resource.author = current_user
       resource.answer = true
-      create! do |format|
-        parent.reload
-        format.js
+      create! do |success, failure|
+        success.js do
+          AnswerNotifierWorker.perform_async(parent.id)
+          parent.reload
+        end
       end
     end
   end

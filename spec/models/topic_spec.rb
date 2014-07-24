@@ -6,6 +6,7 @@ describe Topic, type: :model do
   it { is_expected.to have_many(:topic_tags) }
   it { is_expected.to have_many(:tags).through(:topic_tags) }
   it { is_expected.to have_many(:messages) }
+  it { is_expected.to have_many(:subscriptions) }
 
   it do
     is_expected.to have_one(:question)

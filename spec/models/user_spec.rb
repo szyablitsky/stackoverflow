@@ -7,6 +7,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:messages).with_foreign_key('author_id') }
   it { is_expected.to have_many(:comments).with_foreign_key('author_id') }
   it { is_expected.to have_many :votes }
+  it { is_expected.to have_many :subscriptions }
   it { is_expected.to have_many(:received_reputation_changes)
        .with_foreign_key('receiver_id').class_name('ReputationChange') }
   it { is_expected.to have_many(:committed_reputation_changes)

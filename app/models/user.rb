@@ -11,10 +11,15 @@ class User < ActiveRecord::Base
   has_many :committed_reputation_changes, class_name: 'ReputationChange',
            foreign_key: 'committer_id', inverse_of: :committer
   has_many :votes
+  has_many :subscriptions
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 
   attr_accessor :provider, :uid
+
+  def self.subscribed_to(topic)
+    joins(:subscriptions).where(subscriptions: { topic_id: topic })
+  end
 
   def self.find_for_oauth(auth)
     auth_small = auth.slice(:provider, :uid)

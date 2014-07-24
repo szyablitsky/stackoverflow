@@ -3,8 +3,9 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'shoulda/matchers'
 require 'capybara/rspec'
-
+require 'sidekiq/testing'
 require 'coveralls'
+
 Coveralls.wear!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -20,6 +21,8 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 # ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 ActiveRecord::Migration.maintain_test_schema!
+
+Sidekiq::Testing.inline!
 
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!

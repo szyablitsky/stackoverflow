@@ -30,6 +30,7 @@ class TopicsController < InheritedResources::Base
     create! do |success, failure|
       success.html do
         TagService.process params[:topic][:tags], for: resource
+        Subscription.create topic: resource, user: current_user
         publish_new_topic
         redirect_to question_path(resource)
       end

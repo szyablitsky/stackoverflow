@@ -12,12 +12,8 @@ RSpec.describe DailyDigestWorker do
       ]
     end
 
-    before do
-      Timecop.freeze(Time.now)
-      create :topic
-    end
-
     it "call mailer with yesterday's questions", pending: true do
+      create :topic
       expect(QuestionsMailer).to receive(:digest).with(topics, yesterday)
       subject.perform
     end

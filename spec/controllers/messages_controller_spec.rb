@@ -22,6 +22,11 @@ describe MessagesController, type: :controller do
         expect(topic.answers.first.author).to eq(user)
       end
 
+      it 'performs notification delivery' do
+        expect(AnswerNotifierWorker).to receive(:perform_async).with(topic.id)
+        create_answer
+      end
+
       context 'when already answered by this user' do
         before { topic.answers.create(body: 'body', author: user) }
 

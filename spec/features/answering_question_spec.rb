@@ -8,7 +8,7 @@ feature 'Answering question', %q(
 
   def answer_question
     visit question_path(topic)
-    fill_in 'Your answer', with: 'answer'
+    fill_in 'Your answer', with: 'some answer'
     click_on 'Post your answer'
   end
 
@@ -22,13 +22,13 @@ feature 'Answering question', %q(
 
       expect(current_path).to eq(question_path(topic))
       within '#answers' do
-        expect(page).to have_content 'answer'
+        expect(page).to have_content 'some answer'
       end
     end
 
     scenario 'user can attach files to answer', js: true do
       visit question_path(topic)
-      fill_in 'Your answer', with: 'answer'
+      fill_in 'Your answer', with: 'some answer'
       click_link 'add file'
       attach_file 'File', 'spec/spec_helper.rb'
       # click_link 'add file'
@@ -45,6 +45,13 @@ feature 'Answering question', %q(
       click_on 'Post your answer'
 
       expect(page).to have_content "can't be blank"
+    end
+
+    scenario "notification sent when user answers question", pending: true do
+      expect { answer_question }
+        .to change(ActionMailer::Base.deliveries, :size).by(1)
+      mail = ActionMailer::Base.deliveries.last
+      expect(mail.to).to eq topic.question.author.email
     end
 
     context 'and already answered question' do

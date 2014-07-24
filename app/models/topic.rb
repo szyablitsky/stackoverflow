@@ -10,6 +10,8 @@ class Topic < ActiveRecord::Base
   has_many :topic_tags
   has_many :tags, through: :topic_tags
 
+  has_many :subscriptions
+
   accepts_nested_attributes_for :question
 
   delegate :author, :author=, to: :question

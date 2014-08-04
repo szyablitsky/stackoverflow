@@ -31,7 +31,7 @@ Some hilights of this project:
 18. API request rate limiting with [Redis Throttle Middleware][11].
 19. New answers notification via email with [Sidekiq][12].
 20. Daily questions digest via email for all users with [Sidetiq][13].
-21. Fulltext search with [Thinking Sphinx][14] [Sphinx][15].
+21. Fulltext search with [Thinking Sphinx][14] / [Sphinx][15].
 
 by [Sergey Zyablitsky](http://finch.pro)
 

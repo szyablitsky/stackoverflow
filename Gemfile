@@ -37,7 +37,8 @@ gem 'carrierwave'
 gem 'inherited_resources'
 gem 'doorkeeper'
 gem 'redis-throttle', github: 'andreareginato/redis-throttle'
-gem 'sidetiq'
+gem 'sidekiq'
+# gem 'sidetiq' # travis-ci incompatibility
 gem 'sinatra', require: false
 gem 'mysql2'
 gem 'thinking-sphinx'

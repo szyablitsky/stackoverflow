@@ -133,7 +133,6 @@ describe TopicsController, type: :controller do
     context 'user already subscribed' do
       before { create :subscription, topic: topic, user: user }
 
-
       it 'returns 403 status' do
         subscribe_topic
         expect(response.status).to eq 403

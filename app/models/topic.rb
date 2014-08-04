@@ -36,6 +36,10 @@ class Topic < ActiveRecord::Base
       limit 10)
   end
 
+  def self.daily_digest_for(range)
+    order(:created_at).where(created_at: range)
+  end
+
   def answers_count
     messages_count - 1
   end

@@ -3,7 +3,7 @@ class TopicsController < InheritedResources::Base
   actions :all, except: :destroy
   custom_actions resource: [:subscribe, :unsubscribe]
   respond_to :js, only: [:subscribe, :unsubscribe]
-  
+
   load_and_authorize_resource
   skip_load_resource only: [:home, :index, :show]
   skip_authorize_resource only: [:home, :index, :show]
@@ -36,7 +36,7 @@ class TopicsController < InheritedResources::Base
     create! do |success, failure|
       success.html do
         TagService.process params[:topic][:tags], for: resource
-        Subscription.create topic: resource, user: current_user
+        subscribe
         publish_new_topic
         redirect_to question_path(resource)
       end
@@ -63,9 +63,8 @@ class TopicsController < InheritedResources::Base
   private
 
   def publish_new_topic
-    channel = '/topics/new'
     data = TopicsSerializer.new(resource).to_hash type: :private_pub
-    PrivatePub.publish_to channel, data
+    PrivatePub.publish_to '/topics/new', data
   end
 
   def topic_params

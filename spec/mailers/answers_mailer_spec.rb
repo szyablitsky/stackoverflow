@@ -9,7 +9,7 @@ RSpec.describe AnswersMailer, type: :mailer do
     let(:mail) { AnswersMailer.notification(topic) }
 
     it 'sets subject' do
-      expect(mail.subject).to eq "New answer for question"
+      expect(mail.subject).to eq 'New answer for question'
     end
 
     it 'renders question title' do
@@ -22,8 +22,8 @@ RSpec.describe AnswersMailer, type: :mailer do
     end
 
     it 'mails to all subscribed users' do
-      emails = [ user.email, topic.question.author.email ] 
-      expect(mail.to).to eq emails
+      emails = [user.email, topic.question.author.email].sort
+      expect(mail.to.sort).to eq emails
     end
   end
 end

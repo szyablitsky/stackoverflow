@@ -22,7 +22,7 @@ RSpec.describe QuestionsMailer, type: :mailer do
     it 'mails to all users' do
       emails = topics.map { |t| t.author.email }
       emails << create(:user).email
-      expect(mail.to).to eq emails
+      expect(mail.to.sort).to eq emails.sort
     end
   end
 end

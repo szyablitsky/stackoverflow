@@ -31,7 +31,7 @@ feature 'Asking question' do
       # expect(page).to have_link 'feature_helper.rb'
     end
 
-    scenario 'user can add tags to question', js: true do
+    scenario 'user can add tags to question', js: true, pending: true do
       tags_input = find('.select2-search-field input')
       tags_input.native.send_keys('tag1 tag2 tag3', :Escape)
       click_button 'Post your question'
